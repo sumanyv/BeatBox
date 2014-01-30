@@ -1,9 +1,5 @@
 package com.sound.service;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
 import javax.sound.midi.ControllerEventListener;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiEvent;
@@ -13,7 +9,6 @@ import javax.sound.midi.Sequence;
 import javax.sound.midi.Sequencer;
 import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Track;
-import javax.swing.JPanel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,29 +16,61 @@ import org.slf4j.LoggerFactory;
 public class Player implements ControllerEventListener {
 	
 	private static final Logger log = LoggerFactory.getLogger(Player.class);
+	Sequencer mPlayer ;
+	Track track ;
+	Sequence seq;
 
-	public final void startPlayer() throws MidiUnavailableException, InvalidMidiDataException{
+	public Sequence getSeq() {
+		return seq;
+	}
+
+	public void setSeq(Sequence seq) {
+		this.seq = seq;
+	}
+
+	public Track getTrack() {
+		return track;
+	}
+
+	public void setTrack(Track track) {
+		this.track = track;
+	}
+
+	public final void setUpPlayer(){
 		
-		Sequencer mPlayer = MidiSystem.getSequencer();
-		mPlayer.open();
-		log.debug("Player Opened");
-		Sequence seq = new Sequence(Sequence.PPQ,4);
-		Track track = seq.createTrack();
-		log.debug("Track Created");
-		
-		//Event to Listen
-		int[] eventToListen = {127};
-		mPlayer.addControllerEventListener(this, eventToListen);
-		
-		for(int i=5;i<61;i+=4){
-			track.add(makeEvent(144, 1, i, 100, i));
-			track.add(makeEvent(176, 1, 127, 0, i));
-			track.add(makeEvent(128, 1, i, 100, i+2));
+		try {
+			mPlayer = MidiSystem.getSequencer();
+			mPlayer.open();
+			log.debug("Player Opened");
+			Sequence seq = new Sequence(Sequence.PPQ,4);
+			track = seq.createTrack();
+			log.debug("Track Created");
+			mPlayer.setTempoInBPM(120);
+			
+			
+		} catch (MidiUnavailableException | InvalidMidiDataException e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
 		}
 		
-		mPlayer.setSequence(seq);
-		mPlayer.setTempoInBPM(220);
-		mPlayer.start();
+	}
+	
+	public void makeTracks() throws InvalidMidiDataException{
+		
+		log.debug("Building Track");
+		BeatBoxGui gui = new BeatBoxGui();
+		int[] list =gui.getCheckBoxVal();
+		
+		for(int i=0;i<gui.INSTRUMENT_SIZE;i++){
+			int key = list[i];
+			if(key !=0){
+					track.add(makeEvent(144, 9, key, 100, i));
+					track.add(makeEvent(128, 9, key, 100, i+1));
+					log.debug("Building track for Key {} ",key);
+			}
+			track.add(makeEvent(176, 1, 127, 0, 16));
+		}
+		
 	}
 
 	private static MidiEvent makeEvent(int comd,int chan ,int one ,int two ,int tick) throws InvalidMidiDataException{

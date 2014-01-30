@@ -1,8 +1,5 @@
 package com.sound.service;
 
-import javax.sound.midi.InvalidMidiDataException;
-import javax.sound.midi.MidiUnavailableException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
@@ -17,16 +14,8 @@ public class PlayerTest {
 	private Player p;
 	
   @Test
-  public void startPlayerTest() {
-	  try {
-		p.startPlayer();
-	} catch (MidiUnavailableException e) {
-		log.error("Inside MidiUnavailableExceptoin" );
-		e.printStackTrace();
-	} catch (InvalidMidiDataException e) {
-		log.error("Inside InvalidMidiDataException " );
-		e.printStackTrace();
-	}
+  public void startPlayerTest(){
+		p.setUpPlayer();
   }
   @BeforeMethod
   public void beforeMethod() {
