@@ -1,5 +1,6 @@
 package com.sound.service;
 
+import javax.sound.midi.ControllerEventListener;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiEvent;
 import javax.sound.midi.MidiSystem;
@@ -14,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 public class Player {
 	
-	private static final Logger log = LoggerFactory.getLogger(Player.class);
+	static final Logger log = LoggerFactory.getLogger(Player.class);
 
 	public final void startPlayer() throws MidiUnavailableException, InvalidMidiDataException{
 		
@@ -24,8 +25,13 @@ public class Player {
 		Sequence seq = new Sequence(Sequence.PPQ,4);
 		Track track = seq.createTrack();
 		
+		//Event to Listen
+		int[] eventToListen = {127};
+		p.addControllerEventListener(new PlayListner(), eventToListen);
+		
 		for(int i=5;i<61;i+=4){
 			track.add(makeEvent(144, 1, i, 100, i));
+			track.add(makeEvent(176, 1, 127, 0, i));
 			track.add(makeEvent(128, 1, i, 100, i+2));
 		}
 		
@@ -43,4 +49,15 @@ public class Player {
 		return event;
 		
 	}
+}
+
+class PlayListner implements ControllerEventListener{
+
+	@Override
+	public void controlChange(ShortMessage event) {
+		
+		Player.log.info("Inside Listner Data 1 : {} Data 2 : {} ",event.getData1(),event.getData2());
+		
+	}
+	
 }
