@@ -34,7 +34,7 @@ public class BeatBoxGui extends JPanel {
 	JPanel mainPanel;
 	private ArrayList<JCheckBox> cBoxList;
 
-	Player mPlayer;
+	MusicPlayer mPlayer;
 
 
 	public void setUpGui(){

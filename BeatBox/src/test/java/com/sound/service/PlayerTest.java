@@ -11,7 +11,7 @@ import org.testng.annotations.AfterTest;
 public class PlayerTest {
 	
 	private final static Logger log = LoggerFactory.getLogger(PlayerTest.class);
-	private Player p;
+	private MusicPlayer p;
 	
   @Test
   public void startPlayerTest(){
@@ -19,7 +19,7 @@ public class PlayerTest {
   }
   @BeforeMethod
   public void beforeMethod() {
-	  p = new Player();
+	  p = new MusicPlayer();
   }
 
   @AfterMethod

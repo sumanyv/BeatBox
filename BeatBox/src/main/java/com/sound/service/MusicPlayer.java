@@ -13,9 +13,9 @@ import javax.sound.midi.Track;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Player implements ControllerEventListener {
+public class MusicPlayer implements ControllerEventListener {
 	
-	private static final Logger log = LoggerFactory.getLogger(Player.class);
+	private static final Logger log = LoggerFactory.getLogger(MusicPlayer.class);
 	Sequencer mPlayer ;
 	Track track ;
 	Sequence seq;

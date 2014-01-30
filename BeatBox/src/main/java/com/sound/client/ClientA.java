@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.sound.service.BeatBoxGui;
-import com.sound.service.Player;
+import com.sound.service.MusicPlayer;
 
 public class ClientA {
 	
@@ -15,7 +15,7 @@ public class ClientA {
 		BeatBoxGui gui = new BeatBoxGui();
 		gui.setUpGui();
 		
-		Player p = new Player();
+		MusicPlayer p = new MusicPlayer();
 		p.setUpPlayer();
 		
 	}
