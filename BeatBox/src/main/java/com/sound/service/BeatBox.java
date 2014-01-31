@@ -49,15 +49,15 @@ public class BeatBox {
 			try {
 				mPlayer.makeTracks(CheckBox[i]);
 			} catch (InvalidMidiDataException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				log.error(e.getMessage());
 			}
 			log.trace("Music beat for device "+CheckBox[i]);
 		}
 		try {
 			mPlayer.playTrack();
 		} catch (InvalidMidiDataException e) {
-			// TODO Auto-generated catch block
+			log.error(e.getMessage());
 			e.printStackTrace();
 		}
 	}

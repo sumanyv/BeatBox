@@ -1,6 +1,8 @@
 package com.sound.service;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.util.ArrayList;
@@ -24,6 +26,8 @@ class UserInterface extends JPanel {
 	private JFrame theFrame ;
 	private JPanel mainPanel;
 	private static ArrayList<JCheckBox> cBoxList = new ArrayList<JCheckBox>();;
+	
+	private Color buttonColor = Color.magenta;
 
 
 	void setUpGui(){
@@ -41,18 +45,23 @@ class UserInterface extends JPanel {
 		BeatBox bBox = new BeatBox();
 
 		JButton startButton = new JButton("Start");
+		startButton.setBackground(buttonColor);
+		
 		startButton.addActionListener(bBox.new StartButtonListner());
 		buttonBox.add(startButton);
 
 		JButton stopButton = new JButton("Stop");
+		stopButton.setBackground(buttonColor);
 		stopButton.addActionListener(bBox.new StopButtonListner());
 		buttonBox.add(stopButton);
 
 		JButton upTempoButton = new JButton("Tempo Up");
+		upTempoButton.setBackground(buttonColor);
 		upTempoButton.addActionListener(bBox.new UpTempoButtonListner());
 		buttonBox.add(upTempoButton);
 
 		JButton downTempoButton = new JButton("Tempo Down");
+		downTempoButton.setBackground(buttonColor);
 		downTempoButton.addActionListener(bBox.new DownTempoButtonListner());
 		buttonBox.add(downTempoButton);
 
@@ -113,6 +122,9 @@ class UserInterface extends JPanel {
 	}
 
 	//TODO Add Animation for Playing Music
-
+	public void paintComponent(Graphics g){
+		
+	}
+	
 
 }
