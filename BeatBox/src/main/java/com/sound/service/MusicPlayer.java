@@ -1,6 +1,5 @@
 package com.sound.service;
 
-import javax.sound.midi.ControllerEventListener;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiEvent;
 import javax.sound.midi.MidiSystem;
@@ -13,28 +12,13 @@ import javax.sound.midi.Track;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MusicPlayer implements ControllerEventListener {
+ class MusicPlayer  {
 	
 	private static final Logger log = LoggerFactory.getLogger(MusicPlayer.class);
-	static Sequencer mPlayer ;
-	Track track ;
-	static Sequence seq;
+	private Sequencer mPlayer ;
+	private Track track ;
+	private Sequence seq;
 
-	public Sequence getSeq() {
-		return seq;
-	}
-
-	public void setSeq(Sequence seq) {
-		MusicPlayer.seq = seq;
-	}
-
-	public Track getTrack() {
-		return track;
-	}
-
-	public void setTrack(Track track) {
-		this.track = track;
-	}
 
 	public final void setUpPlayer(){
 		
@@ -55,13 +39,16 @@ public class MusicPlayer implements ControllerEventListener {
 		
 	}
 	
-	public void makeTracks() throws InvalidMidiDataException{
+	public void playTrack() throws InvalidMidiDataException{
+		mPlayer.setSequence(seq);
+		mPlayer.start();
+	}
+	
+	public void makeTracks(int[]  list) throws InvalidMidiDataException{
 		
 		log.debug("Building Track");
-		UserInteface gui = new UserInteface();
-		int[] list =gui.getCheckBoxVal();
 		
-		for(int i=0;i<gui.INSTRUMENT_SIZE;i++){
+		for(int i=0;i<BeatBox.TOTAL_INSTRUMENTS;i++){
 			int key = list[i];
 			if(key !=0){
 					track.add(makeEvent(144, 9, key, 100, i));
@@ -70,7 +57,6 @@ public class MusicPlayer implements ControllerEventListener {
 			}
 			track.add(makeEvent(176, 1, 127, 0, 16));
 		}
-		
 	}
 
 	private static MidiEvent makeEvent(int comd,int chan ,int one ,int two ,int tick) throws InvalidMidiDataException{
@@ -82,13 +68,5 @@ public class MusicPlayer implements ControllerEventListener {
 		return event;	
 	}
 
-	@Override
-	public void controlChange(ShortMessage event) {
-		
-		
-	}
-	
-	
-	
 }
 

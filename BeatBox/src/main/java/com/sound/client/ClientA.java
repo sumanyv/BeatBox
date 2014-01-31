@@ -2,9 +2,7 @@ package com.sound.client;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.sound.service.UserInteface;
-import com.sound.service.MusicPlayer;
+import com.sound.service.BeatBox;
 
 public class ClientA {
 	
@@ -13,12 +11,8 @@ public class ClientA {
 	public static void main(String[] args){
 		log.debug("Started ClientA ");
 		
-		MusicPlayer p = new MusicPlayer();
-		p.setUpPlayer();
-	
-		
-		UserInteface gui = new UserInteface();
-		gui.setUpGui();
+		BeatBox bBox = new BeatBox();
+		bBox.launch();
 		
 	}
 

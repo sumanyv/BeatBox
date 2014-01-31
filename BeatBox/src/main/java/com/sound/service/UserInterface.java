@@ -3,11 +3,8 @@ package com.sound.service;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Label;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.sound.midi.InvalidMidiDataException;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -19,11 +16,10 @@ import javax.swing.JPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UserInteface extends JPanel {
+ class UserInterface extends JPanel {
 
-	public final int INSTRUMENT_SIZE =16;
 	private static final long serialVersionUID = 1L;
-	static final Logger log = LoggerFactory.getLogger(UserInteface.class);
+	static final Logger log = LoggerFactory.getLogger(UserInterface.class);
 
 	private final String[] instrumentNames = {"Bass Drum","Closed Hi-Hat","Open Hi-Hat","Acoustic Snare",
 			"Crash Cymbai","Hand Clap","High Tom","Hi Bong","Maracas","Whistle",
@@ -32,7 +28,7 @@ public class UserInteface extends JPanel {
 
 	JFrame theFrame ;
 	JPanel mainPanel;
-	private ArrayList<JCheckBox> cBoxList;
+	private ArrayList<JCheckBox> cBoxList = new ArrayList<JCheckBox>();;
 
 	MusicPlayer mPlayer;
 
@@ -45,29 +41,31 @@ public class UserInteface extends JPanel {
 		BorderLayout bLayout = new BorderLayout();
 		JPanel backPanel = new JPanel(bLayout);
 		backPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-		cBoxList = new ArrayList<JCheckBox>();
+		
 		Box buttonBox = new Box(BoxLayout.Y_AXIS);
 
+		/* Beat Box obj for listners TODO Not Sure abt implementation*/
+		BeatBox bBox = new BeatBox();
+		
 		JButton startButton = new JButton("Start");
-		startButton.addActionListener(new StartButtonListner());
+		startButton.addActionListener(bBox.new StartButtonListner());
 		buttonBox.add(startButton);
 
 		JButton stopButton = new JButton("Stop");
-		stopButton.addActionListener(new StopButtonListner());
+		stopButton.addActionListener(bBox.new StopButtonListner());
 		buttonBox.add(stopButton);
 
 		JButton upTempoButton = new JButton("Tempo Up");
-		upTempoButton.addActionListener(new UpTempoButtonListner());
+		upTempoButton.addActionListener(bBox.new UpTempoButtonListner());
 		buttonBox.add(upTempoButton);
 
 		JButton downTempoButton = new JButton("Tempo Down");
-		downTempoButton.addActionListener(new DownTempoButtonListner());
+		downTempoButton.addActionListener(bBox.new DownTempoButtonListner());
 		buttonBox.add(downTempoButton);
 
 
 		Box nameBox = new Box(BoxLayout.Y_AXIS);
-		for(int i=0 ;i<INSTRUMENT_SIZE;i++){
+		for(int i=0 ;i<BeatBox.TOTAL_INSTRUMENTS;i++){
 			nameBox.add(new Label(instrumentNames[i]));
 		}
 
@@ -76,7 +74,7 @@ public class UserInteface extends JPanel {
 
 		theFrame.getContentPane().add(backPanel);
 
-		GridLayout grid = new GridLayout(INSTRUMENT_SIZE,INSTRUMENT_SIZE);
+		GridLayout grid = new GridLayout(BeatBox.TOTAL_INSTRUMENTS,BeatBox.TOTAL_INSTRUMENTS);
 		grid.setVgap(1);
 		grid.setHgap(2);
 
@@ -99,37 +97,19 @@ public class UserInteface extends JPanel {
 
 	}
 
-	public void buildTrackAndStart(){
-
-		// TODO Issue Code Debug Tmr
-		log.debug("Started Building track");
-		if(mPlayer.getTrack()!=null){
-			mPlayer.getSeq().deleteTrack(mPlayer.getTrack());
-			mPlayer.setTrack(mPlayer.getSeq().createTrack());
-		}
-
-		try {
-			mPlayer.makeTracks();
-		} catch (InvalidMidiDataException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-
-	}
-
 	public int[] getCheckBoxVal(){
 
 		log.debug("Getting Checkbox value from screen");
 		int[] trackList = null; 
-		for(int i=0;i<INSTRUMENT_SIZE;++i){
+		for(int i=0;i<BeatBox.TOTAL_INSTRUMENTS;++i){
 
-			trackList = new int[INSTRUMENT_SIZE];
+			trackList = new int[BeatBox.TOTAL_INSTRUMENTS];
 			int key = instruments[i];
 
 			log.debug("Key Seleted : {}",key);
 			log.debug("Check Box List size : {} ",cBoxList.size());
-			for(int j=0;j<INSTRUMENT_SIZE;++j){
-				JCheckBox jc = (JCheckBox) cBoxList.get(j+(INSTRUMENT_SIZE*i));
+			for(int j=0;j<BeatBox.TOTAL_INSTRUMENTS;++j){
+				JCheckBox jc = (JCheckBox) cBoxList.get(j+(BeatBox.TOTAL_INSTRUMENTS*i));
 
 				if(jc.isSelected()){
 					trackList[j]=key;
@@ -141,45 +121,8 @@ public class UserInteface extends JPanel {
 		}
 		return trackList;
 	}
+	
+	//TODO Add Animation for Playing Music
 
 
-	class StartButtonListner implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			log.debug("Start Button Clicked");
-			buildTrackAndStart();
-		}
-
-	}
-
-	class StopButtonListner implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-
-	class UpTempoButtonListner implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-
-	class DownTempoButtonListner implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
 }
