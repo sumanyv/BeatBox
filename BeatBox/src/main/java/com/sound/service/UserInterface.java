@@ -16,24 +16,17 @@ import javax.swing.JPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
- class UserInterface extends JPanel {
+class UserInterface extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	static final Logger log = LoggerFactory.getLogger(UserInterface.class);
-
-	private final String[] instrumentNames = {"Bass Drum","Closed Hi-Hat","Open Hi-Hat","Acoustic Snare",
-			"Crash Cymbai","Hand Clap","High Tom","Hi Bong","Maracas","Whistle",
-			"Low Conga","Cowbell","Vibraslap","Low-mid Tom","High Agogo","Open Hi conga"};
-	private int[] instruments ={35,42,46,38,49,39,50,60,70,72,64,56,58,47,67,63};
+	private static final Logger log = LoggerFactory.getLogger(UserInterface.class);
 
 	private JFrame theFrame ;
 	private JPanel mainPanel;
 	private static ArrayList<JCheckBox> cBoxList = new ArrayList<JCheckBox>();;
 
-	MusicPlayer mPlayer;
 
-
-	 void setUpGui(){
+	void setUpGui(){
 
 		theFrame = new JFrame("BeatBox");
 		theFrame.setTitle("Cyber Beat Box");
@@ -41,12 +34,12 @@ import org.slf4j.LoggerFactory;
 		BorderLayout bLayout = new BorderLayout();
 		JPanel backPanel = new JPanel(bLayout);
 		backPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		
+
 		Box buttonBox = new Box(BoxLayout.Y_AXIS);
 
 		/* Beat Box obj for listners TODO Not Sure abt implementation*/
 		BeatBox bBox = new BeatBox();
-		
+
 		JButton startButton = new JButton("Start");
 		startButton.addActionListener(bBox.new StartButtonListner());
 		buttonBox.add(startButton);
@@ -66,7 +59,7 @@ import org.slf4j.LoggerFactory;
 
 		Box nameBox = new Box(BoxLayout.Y_AXIS);
 		for(int i=0 ;i<BeatBox.TOTAL_INSTRUMENTS;i++){
-			nameBox.add(new Label(instrumentNames[i]));
+			nameBox.add(new Label(BeatBox.instrumentNames[i]));
 		}
 
 		backPanel.add(BorderLayout.EAST, buttonBox);
@@ -87,8 +80,7 @@ import org.slf4j.LoggerFactory;
 			cBoxList.add(c);
 			mainPanel.add(c);
 		}
-
-		log.debug("Check Box List Size : {}",cBoxList.size());
+		log.trace("Check Box List Size : {}",cBoxList.size());
 
 		theFrame.setBounds(50,50,300,300);
 		theFrame.pack();
@@ -97,13 +89,13 @@ import org.slf4j.LoggerFactory;
 
 	}
 
-	 int[][] getCheckBoxVal(){
+	int[][] getCheckBoxVal(){
 
 		log.debug("Getting Checkbox value from screen");
 		int[][] trackList =new int[BeatBox.TOTAL_INSTRUMENTS][BeatBox.TOTAL_INSTRUMENTS];
 		for(int i=0;i<BeatBox.TOTAL_INSTRUMENTS;++i){
 
-			int key = instruments[i];
+			int key = BeatBox.instruments[i];
 
 			log.debug("Key Seleted : {}",key);
 			for(int j=0;j<BeatBox.TOTAL_INSTRUMENTS;++j){
@@ -119,7 +111,7 @@ import org.slf4j.LoggerFactory;
 		}
 		return trackList;
 	}
-	
+
 	//TODO Add Animation for Playing Music
 
 

@@ -12,8 +12,15 @@ public class BeatBox {
 
 	/*Constants */
 	public static final int TOTAL_INSTRUMENTS= 16;
+	public static final int[] instruments =			{35,42,46,38,49,39,50,60,70,72,64,56,58,47,67,63};
+	public static final String[] instrumentNames = {	"Bass Drum","Closed Hi-Hat","Open Hi-Hat","Acoustic Snare",
+														"Crash Cymbai","Hand Clap","High Tom","Hi Bong","Maracas","Whistle",
+														"Low Conga","Cowbell","Vibraslap","Low-mid Tom","High Agogo","Open Hi conga"
+													};
+
 	private final Logger log = LoggerFactory.getLogger(BeatBox.class);
 
+	/* HAS-A obj of Both Music Player and User Interface */
 	private MusicPlayer mPlayer;
 	private UserInterface ui;
 
@@ -23,6 +30,9 @@ public class BeatBox {
 		ui = new UserInterface();
 	}
 
+	/**
+	 * Set Up the Music Player and the User Inteface
+	 */
 	public void launch(){
 
 		/* Set Up Music Player and User Interface */
@@ -66,29 +76,29 @@ public class BeatBox {
 	
 
 	class StartButtonListner implements ActionListener{
-
 		public void actionPerformed(ActionEvent e) {
+			log.trace("Start Button Clicked");
 			start();
 		}
 
 	}
 	class StopButtonListner implements ActionListener{
-
 		public void actionPerformed(ActionEvent e) {
+			log.trace("Stop Button Clicked");
 			stop();
 		}
 	}
 
 	class UpTempoButtonListner implements ActionListener{
-
 		public void actionPerformed(ActionEvent e) {
+			log.trace("Tempo Up Button Clicked");
 			tempoUp();
 		}
 	}
 
 	class DownTempoButtonListner implements ActionListener{
-
 		public void actionPerformed(ActionEvent e) {
+			log.trace("Tempo Down Button Clicked");
 			tempoDown();
 		}
 	}
