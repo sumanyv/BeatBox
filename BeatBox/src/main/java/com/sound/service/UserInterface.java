@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 
 	JFrame theFrame ;
 	JPanel mainPanel;
-	private ArrayList<JCheckBox> cBoxList = new ArrayList<JCheckBox>();;
+	private static ArrayList<JCheckBox> cBoxList = new ArrayList<JCheckBox>();;
 
 	MusicPlayer mPlayer;
 
@@ -97,24 +97,22 @@ import org.slf4j.LoggerFactory;
 
 	}
 
-	public int[] getCheckBoxVal(){
+	public int[][] getCheckBoxVal(){
 
 		log.debug("Getting Checkbox value from screen");
-		int[] trackList = null; 
+		int[][] trackList =new int[BeatBox.TOTAL_INSTRUMENTS][BeatBox.TOTAL_INSTRUMENTS];
 		for(int i=0;i<BeatBox.TOTAL_INSTRUMENTS;++i){
 
-			trackList = new int[BeatBox.TOTAL_INSTRUMENTS];
 			int key = instruments[i];
 
 			log.debug("Key Seleted : {}",key);
-			log.debug("Check Box List size : {} ",cBoxList.size());
 			for(int j=0;j<BeatBox.TOTAL_INSTRUMENTS;++j){
 				JCheckBox jc = (JCheckBox) cBoxList.get(j+(BeatBox.TOTAL_INSTRUMENTS*i));
 
 				if(jc.isSelected()){
-					trackList[j]=key;
+					trackList[i][j]=key;
 				} else {
-					trackList[j]=0;
+					trackList[i][j]=0;
 				}
 			}
 

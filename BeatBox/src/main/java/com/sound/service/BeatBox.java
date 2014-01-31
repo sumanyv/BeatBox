@@ -5,15 +5,17 @@ import java.awt.event.ActionListener;
 
 import javax.sound.midi.InvalidMidiDataException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class BeatBox {
 
 	/*Constants */
 	public static final int TOTAL_INSTRUMENTS= 16;
-
+	private final Logger log = LoggerFactory.getLogger(BeatBox.class);
 
 	private MusicPlayer mPlayer;
 	private UserInterface ui;
-	private boolean PLAY_MUSIC =false ;
 
 	public BeatBox(){
 		/*Initialize Objects */
@@ -26,49 +28,47 @@ public class BeatBox {
 		/* Set Up Music Player and User Interface */
 		mPlayer.setUpPlayer();
 		ui.setUpGui();
+	}
 
-		/*Start player loop*/
+	private void start() {
+
+		int[][] CheckBox =new int[TOTAL_INSTRUMENTS][TOTAL_INSTRUMENTS]; 
+		/*Get User Selected CheckBox */
+		CheckBox= ui.getCheckBoxVal();
+		for(int i=0;i<TOTAL_INSTRUMENTS;++i){
+			try {
+				mPlayer.makeTracks(CheckBox[i]);
+			} catch (InvalidMidiDataException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			log.trace("Music beat for device "+CheckBox[i]);
+		}
 		try {
-			start();
+			mPlayer.playTrack();
 		} catch (InvalidMidiDataException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+
 	}
 
-	private void start() throws InvalidMidiDataException {
-		int[] CheckBox =null; 
-
-		while(true){
-
-			if(PLAY_MUSIC){
-
-				/*Get User Selected CheckBox */
-				CheckBox= ui.getCheckBoxVal();
-				mPlayer.makeTracks(CheckBox);
-				mPlayer.playTrack();
-			}
-		}
+	private void stop(){
+		mPlayer.stopTrack();
 	}
 
 	class StartButtonListner implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-			
-			PLAY_MUSIC =true;
-			try {
-				start();
-			} catch (InvalidMidiDataException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			start();
 		}
 
 	}
 	class StopButtonListner implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-			PLAY_MUSIC =false;
+			stop();
 		}
 	}
 
@@ -85,5 +85,4 @@ public class BeatBox {
 			// TODO Auto-generated method stub
 		}
 	}
-
 }
