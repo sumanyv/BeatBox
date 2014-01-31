@@ -16,16 +16,16 @@ import org.slf4j.LoggerFactory;
 public class MusicPlayer implements ControllerEventListener {
 	
 	private static final Logger log = LoggerFactory.getLogger(MusicPlayer.class);
-	Sequencer mPlayer ;
+	static Sequencer mPlayer ;
 	Track track ;
-	Sequence seq;
+	static Sequence seq;
 
 	public Sequence getSeq() {
 		return seq;
 	}
 
 	public void setSeq(Sequence seq) {
-		this.seq = seq;
+		MusicPlayer.seq = seq;
 	}
 
 	public Track getTrack() {
@@ -58,7 +58,7 @@ public class MusicPlayer implements ControllerEventListener {
 	public void makeTracks() throws InvalidMidiDataException{
 		
 		log.debug("Building Track");
-		BeatBoxGui gui = new BeatBoxGui();
+		UserInteface gui = new UserInteface();
 		int[] list =gui.getCheckBoxVal();
 		
 		for(int i=0;i<gui.INSTRUMENT_SIZE;i++){

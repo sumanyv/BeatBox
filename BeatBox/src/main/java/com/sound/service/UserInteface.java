@@ -19,11 +19,11 @@ import javax.swing.JPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BeatBoxGui extends JPanel {
+public class UserInteface extends JPanel {
 
 	public final int INSTRUMENT_SIZE =16;
 	private static final long serialVersionUID = 1L;
-	static final Logger log = LoggerFactory.getLogger(BeatBoxGui.class);
+	static final Logger log = LoggerFactory.getLogger(UserInteface.class);
 
 	private final String[] instrumentNames = {"Bass Drum","Closed Hi-Hat","Open Hi-Hat","Acoustic Snare",
 			"Crash Cymbai","Hand Clap","High Tom","Hi Bong","Maracas","Whistle",
@@ -103,7 +103,7 @@ public class BeatBoxGui extends JPanel {
 
 		// TODO Issue Code Debug Tmr
 		log.debug("Started Building track");
-		if(mPlayer.getSeq()!=null&&mPlayer.getTrack()!=null){
+		if(mPlayer.getTrack()!=null){
 			mPlayer.getSeq().deleteTrack(mPlayer.getTrack());
 			mPlayer.setTrack(mPlayer.getSeq().createTrack());
 		}
