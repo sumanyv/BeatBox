@@ -50,13 +50,20 @@ public class BeatBox {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
 	}
-
+	
 	private void stop(){
 		mPlayer.stopTrack();
 	}
+	
+	private void tempoUp(){
+		mPlayer.incrementTempo();
+	}
+	
+	private void tempoDown(){
+		mPlayer.decrementTempo();
+	}
+	
 
 	class StartButtonListner implements ActionListener{
 
@@ -75,14 +82,14 @@ public class BeatBox {
 	class UpTempoButtonListner implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			tempoUp();
 		}
 	}
 
 	class DownTempoButtonListner implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			tempoDown();
 		}
 	}
 }

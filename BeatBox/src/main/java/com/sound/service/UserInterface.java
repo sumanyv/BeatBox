@@ -24,16 +24,16 @@ import org.slf4j.LoggerFactory;
 	private final String[] instrumentNames = {"Bass Drum","Closed Hi-Hat","Open Hi-Hat","Acoustic Snare",
 			"Crash Cymbai","Hand Clap","High Tom","Hi Bong","Maracas","Whistle",
 			"Low Conga","Cowbell","Vibraslap","Low-mid Tom","High Agogo","Open Hi conga"};
-	int[] instruments ={35,42,46,38,49,39,50,60,70,72,64,56,58,47,67,63};
+	private int[] instruments ={35,42,46,38,49,39,50,60,70,72,64,56,58,47,67,63};
 
-	JFrame theFrame ;
-	JPanel mainPanel;
+	private JFrame theFrame ;
+	private JPanel mainPanel;
 	private static ArrayList<JCheckBox> cBoxList = new ArrayList<JCheckBox>();;
 
 	MusicPlayer mPlayer;
 
 
-	public void setUpGui(){
+	 void setUpGui(){
 
 		theFrame = new JFrame("BeatBox");
 		theFrame.setTitle("Cyber Beat Box");
@@ -97,7 +97,7 @@ import org.slf4j.LoggerFactory;
 
 	}
 
-	public int[][] getCheckBoxVal(){
+	 int[][] getCheckBoxVal(){
 
 		log.debug("Getting Checkbox value from screen");
 		int[][] trackList =new int[BeatBox.TOTAL_INSTRUMENTS][BeatBox.TOTAL_INSTRUMENTS];

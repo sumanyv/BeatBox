@@ -10,10 +10,8 @@ public class ClientA {
 	
 	public static void main(String[] args){
 		log.debug("Started ClientA ");
-		
 		BeatBox bBox = new BeatBox();
-		bBox.launch();
-		
+		bBox.launch();	
 	}
 
 }

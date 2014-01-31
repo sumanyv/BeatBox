@@ -15,21 +15,23 @@ import org.slf4j.LoggerFactory;
  class MusicPlayer  {
 	
 	private static final Logger log = LoggerFactory.getLogger(MusicPlayer.class);
-	private static Sequencer mPlayer ;
+	private final float TEMPO_FACTOR_UP =1.03f;
+	private final float TEMPO_FACTOR_DOWN = 0.97f;
+	private static Sequencer device ;
 	private static Track track ;
 	private static Sequence seq;
 
 
-	public final void setUpPlayer(){
+	 final void setUpPlayer(){
 		
 		try {
-			mPlayer = MidiSystem.getSequencer();
-			mPlayer.open();
+			device = MidiSystem.getSequencer();
+			device.open();
 			log.debug("Player Opened");
 			seq = new Sequence(Sequence.PPQ,4);
 			track = seq.createTrack();
 			log.debug("Track Created");
-			mPlayer.setTempoInBPM(120);
+			device.setTempoInBPM(120);
 			
 			
 		} catch (MidiUnavailableException | InvalidMidiDataException e) {
@@ -39,17 +41,27 @@ import org.slf4j.LoggerFactory;
 		
 	}
 	
-	public void playTrack() throws InvalidMidiDataException{
-		mPlayer.setSequence(seq);
-		mPlayer.setLoopCount(Sequencer.LOOP_CONTINUOUSLY);
-		mPlayer.start();
+	 void playTrack() throws InvalidMidiDataException{
+		device.setSequence(seq);
+		device.setLoopCount(Sequencer.LOOP_CONTINUOUSLY);
+		device.start();
 	}
 	
-	public void stopTrack(){
-		mPlayer.stop();
+	 void stopTrack(){
+		device.stop();
 	}
 	
-	public void makeTracks(int[] list) throws InvalidMidiDataException{
+	 void incrementTempo(){
+		float tempFactor = device.getTempoFactor();
+		device.setTempoFactor((float) (tempFactor * TEMPO_FACTOR_UP));
+	}
+	
+	 void decrementTempo(){
+		float tempFactor = device.getTempoFactor();
+		device.setTempoFactor((float)(tempFactor * TEMPO_FACTOR_DOWN));
+	}
+	
+	 void makeTracks(int[] list) throws InvalidMidiDataException{
 		
 		log.debug("Building Track");
 		
@@ -64,7 +76,7 @@ import org.slf4j.LoggerFactory;
 		}
 	}
 
-	private static MidiEvent makeEvent(int comd,int chan ,int one ,int two ,int tick) throws InvalidMidiDataException{
+	private MidiEvent makeEvent(int comd,int chan ,int one ,int two ,int tick) throws InvalidMidiDataException{
 		MidiEvent event = null;
 		ShortMessage sMsg = new ShortMessage();
 		sMsg.setMessage(comd, chan, one, two);
