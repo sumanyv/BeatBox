@@ -65,7 +65,6 @@ class UserInterface extends JPanel {
 		downTempoButton.addActionListener(bBox.new DownTempoButtonListner());
 		buttonBox.add(downTempoButton);
 
-
 		Box nameBox = new Box(BoxLayout.Y_AXIS);
 		for(int i=0 ;i<BeatBox.TOTAL_INSTRUMENTS;i++){
 			nameBox.add(new Label(BeatBox.instrumentNames[i]));
