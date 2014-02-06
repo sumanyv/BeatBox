@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class NamePanel extends JPanel {
 
@@ -26,6 +28,7 @@ public class NamePanel extends JPanel {
 	 * Create the panel.
 	 */
 	public NamePanel() {
+		setBorder(new LineBorder(new Color(0, 0, 0)));
 		
 		setLayout(new GridLayout());
 		Box nameBox = new Box(BoxLayout.Y_AXIS);

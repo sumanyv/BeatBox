@@ -18,12 +18,11 @@ public class BeatBox {
 
 	/* HAS-A obj of Both Music Player and User Interface */
 	private MusicPlayer mPlayer;
-	private MainFrame ui;
 
 	public BeatBox(){
 		/*Initialize Objects */
 		mPlayer = new MusicPlayer();
-		ui = new MainFrame();
+		
 	}
 
 	/**
@@ -33,7 +32,7 @@ public class BeatBox {
 
 		/* Set Up Music Player and User Interface */
 		mPlayer.setUpPlayer();
-		ui.setUpGui();
+		MainFrame ui = new MainFrame();
 	}
 
 	private void start() {
