@@ -1,7 +1,6 @@
 package com.sound.service;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Label;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -27,8 +25,6 @@ class MainFrame  {
 	private JFrame frame ;
 	private JPanel mainPanel;
 	private static ArrayList<JCheckBox> cBoxList = new ArrayList<JCheckBox>();;
-	
-	private Color buttonColor = Color.magenta;
 
 
 	void setUpGui(){
@@ -39,39 +35,13 @@ class MainFrame  {
 		BorderLayout bLayout = new BorderLayout();
 		JPanel backPanel = new JPanel(bLayout);
 		backPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-		Box buttonBox = new Box(BoxLayout.Y_AXIS);
-
-		/* Beat Box obj for listners TODO Not Sure abt implementation*/
-		BeatBox bBox = new BeatBox();
-
-		JButton startButton = new JButton("Start");
-		startButton.setBackground(buttonColor);
 		
-		startButton.addActionListener(bBox.new StartButtonListner());
-		buttonBox.add(startButton);
-
-		JButton stopButton = new JButton("Stop");
-		stopButton.setBackground(buttonColor);
-		stopButton.addActionListener(bBox.new StopButtonListner());
-		buttonBox.add(stopButton);
-
-		JButton upTempoButton = new JButton("Tempo Up");
-		upTempoButton.setBackground(buttonColor);
-		upTempoButton.addActionListener(bBox.new UpTempoButtonListner());
-		buttonBox.add(upTempoButton);
-
-		JButton downTempoButton = new JButton("Tempo Down");
-		downTempoButton.setBackground(buttonColor);
-		downTempoButton.addActionListener(bBox.new DownTempoButtonListner());
-		buttonBox.add(downTempoButton);
-
 		Box nameBox = new Box(BoxLayout.Y_AXIS);
 		for(int i=0 ;i<BeatBox.TOTAL_INSTRUMENTS;i++){
 			nameBox.add(new Label(BeatBox.instrumentNames[i]));
 		}
 
-		backPanel.add(BorderLayout.EAST, buttonBox);
+		backPanel.add(BorderLayout.EAST, new ButtonPanel());
 		backPanel.add(BorderLayout.WEST, nameBox);
 
 		frame.getContentPane().add(backPanel);
