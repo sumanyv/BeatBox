@@ -18,12 +18,13 @@ import javax.swing.JPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class UserInterface extends JPanel {
+class MainFrame  {
+	public MainFrame() {
+	}
 
-	private static final long serialVersionUID = 1L;
-	private static final Logger log = LoggerFactory.getLogger(UserInterface.class);
+	private static final Logger log = LoggerFactory.getLogger(MainFrame.class);
 
-	private JFrame theFrame ;
+	private JFrame frame ;
 	private JPanel mainPanel;
 	private static ArrayList<JCheckBox> cBoxList = new ArrayList<JCheckBox>();;
 	
@@ -32,9 +33,9 @@ class UserInterface extends JPanel {
 
 	void setUpGui(){
 
-		theFrame = new JFrame("BeatBox");
-		theFrame.setTitle("Cyber Beat Box");
-		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame = new JFrame("BeatBox");
+		frame.setTitle("Cyber Beat Box");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		BorderLayout bLayout = new BorderLayout();
 		JPanel backPanel = new JPanel(bLayout);
 		backPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -73,7 +74,7 @@ class UserInterface extends JPanel {
 		backPanel.add(BorderLayout.EAST, buttonBox);
 		backPanel.add(BorderLayout.WEST, nameBox);
 
-		theFrame.getContentPane().add(backPanel);
+		frame.getContentPane().add(backPanel);
 
 		GridLayout grid = new GridLayout(BeatBox.TOTAL_INSTRUMENTS,BeatBox.TOTAL_INSTRUMENTS);
 		grid.setVgap(1);
@@ -90,10 +91,10 @@ class UserInterface extends JPanel {
 		}
 		log.trace("Check Box List Size : {}",cBoxList.size());
 
-		theFrame.setBounds(50,50,300,300);
-		theFrame.pack();
-		theFrame.setVisible(true);
-		log.info("Beat Box Gui Set Up complete size : {}",theFrame.getHeight());
+		frame.setBounds(50,50,300,300);
+		frame.pack();
+		frame.setVisible(true);
+		log.info("Beat Box Gui Set Up complete size : {}",frame.getHeight());
 
 	}
 

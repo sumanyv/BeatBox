@@ -22,12 +22,12 @@ public class BeatBox {
 
 	/* HAS-A obj of Both Music Player and User Interface */
 	private MusicPlayer mPlayer;
-	private UserInterface ui;
+	private MainFrame ui;
 
 	public BeatBox(){
 		/*Initialize Objects */
 		mPlayer = new MusicPlayer();
-		ui = new UserInterface();
+		ui = new MainFrame();
 	}
 
 	/**
