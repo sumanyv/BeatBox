@@ -1,11 +1,21 @@
 package com.sound.service;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JButton;
+
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
+/** 
+ * This is our Side Button Panel
+ * @author adityas
+ *
+ */
 public class ButtonPanel extends JPanel {
 
 	/**
@@ -20,6 +30,8 @@ public class ButtonPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public ButtonPanel() {
+		
+		setBorder(BorderFactory.createLineBorder(Color.black));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
