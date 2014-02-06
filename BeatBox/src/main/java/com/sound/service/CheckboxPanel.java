@@ -17,15 +17,17 @@ public class CheckboxPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public CheckboxPanel() {
-
 		GridLayout grid = new GridLayout(BeatBox.TOTAL_INSTRUMENTS,BeatBox.TOTAL_INSTRUMENTS);
 		grid.setVgap(1);
 		grid.setHgap(2);
+		setLayout(grid);
 		for(int i=0;i<256;i++){
 			JCheckBox c = new JCheckBox();
 			c.setSelected(false);
 			cBoxList.add(c);
+			add(c);
 		}
+
 		log.trace("Check Box List Size : {}",cBoxList.size());
 	}
 
