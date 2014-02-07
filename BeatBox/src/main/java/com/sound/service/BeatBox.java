@@ -13,10 +13,7 @@ public class BeatBox {
 	/*Constants */
 	public static final int TOTAL_INSTRUMENTS= 16;
 	public static final int[] instruments =			{35,42,46,38,49,39,50,60,70,72,64,56,58,47,67,63};
-	
 	private final Logger log = LoggerFactory.getLogger(BeatBox.class);
-
-	/* HAS-A obj of Both Music Player and User Interface */
 	private MusicPlayer mPlayer;
 
 	public BeatBox(){
@@ -24,7 +21,6 @@ public class BeatBox {
 		mPlayer = new MusicPlayer();
 		
 	}
-
 	/**
 	 * Set Up the Music Player and the User Inteface
 	 */

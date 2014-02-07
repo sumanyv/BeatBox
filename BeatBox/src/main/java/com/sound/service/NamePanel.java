@@ -1,6 +1,10 @@
 package com.sound.service;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Label;
+
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -26,6 +30,7 @@ public class NamePanel extends JPanel {
 	public NamePanel() {
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		Box nameBox = new Box(BoxLayout.Y_AXIS);
+		setBorder(BorderFactory.createLineBorder(Color.black));
 		for(int i=0 ;i<BeatBox.TOTAL_INSTRUMENTS;i++){
 			log.trace("Add New Name Panel : {} , At Position : {}",instrumentNames[i],i);
 			nameBox.add(new Label(instrumentNames[i]));

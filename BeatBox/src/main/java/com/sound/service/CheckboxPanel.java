@@ -1,9 +1,13 @@
 package com.sound.service;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +25,7 @@ public class CheckboxPanel extends JPanel {
 		grid.setVgap(1);
 		grid.setHgap(2);
 		setLayout(grid);
+		setBorder(BorderFactory.createLineBorder(Color.black));
 		for(int i=0;i<256;i++){
 			JCheckBox c = new JCheckBox();
 			c.setSelected(false);
