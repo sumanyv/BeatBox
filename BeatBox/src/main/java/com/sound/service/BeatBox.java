@@ -29,6 +29,7 @@ public class BeatBox {
 		/* Set Up Music Player and User Interface */
 		mPlayer.setUpPlayer();
 		MainFrame ui = new MainFrame();
+		//TODO Check ui object is need
 	}
 
 	private void start() {
