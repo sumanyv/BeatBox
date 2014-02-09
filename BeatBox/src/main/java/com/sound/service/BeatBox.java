@@ -2,6 +2,8 @@ package com.sound.service;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sound.midi.InvalidMidiDataException;
 
@@ -11,14 +13,22 @@ import org.slf4j.LoggerFactory;
 public class BeatBox {
 
 	/*Constants */
-	public static final int TOTAL_INSTRUMENTS= 16;
-	public static final int[] instruments =			{35,42,46,38,49,39,50,60,70,72,64,56,58,47,67,63};
+//	public static final int TOTAL_INSTRUMENTS= 16;
+//	public static final int[] instruments =			{35,42,46,38,49,39,50,60,70,72,64,56,58,47,67,63};
 	private final Logger log = LoggerFactory.getLogger(BeatBox.class);
 	private MusicPlayer mPlayer;
-
+	private MainFrame gui;
+	private static List<Instrument> instList = new ArrayList<Instrument>();
+	
+	static{
+		
+		instList = InstrumentXml.read();
+	}
+	
 	public BeatBox(){
 		/*Initialize Objects */
-		mPlayer = new MusicPlayer();
+		mPlayer = new MusicPlayer(instList);
+		gui = new MainFrame(instList);
 		
 	}
 	/**
@@ -28,7 +38,6 @@ public class BeatBox {
 
 		/* Set Up Music Player and User Interface */
 		mPlayer.setUpPlayer();
-		MainFrame ui = new MainFrame();
 		//TODO Check ui object is need
 	}
 

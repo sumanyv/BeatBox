@@ -2,6 +2,8 @@ package com.sound.service;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,11 +20,14 @@ class MainFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 2148367511626434256L;
+	private static final String TITLE = "Cyber Beat Box";
 	private static final Logger log = LoggerFactory.getLogger(MainFrame.class);
+	private List<Instrument>instList = new ArrayList<Instrument>();
 
-	public MainFrame(){
+	 MainFrame(List<Instrument> instList){
+		 this.instList=instList;
 
-		setTitle("Cyber Beat Box");
+		setTitle(TITLE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50,50,300,300);
 		mainPanel = new JPanel(new BorderLayout(0,0));
@@ -32,7 +37,6 @@ class MainFrame extends JFrame {
 		mainPanel.add(BorderLayout.CENTER,new CheckboxPanel());
 		mainPanel.add(BorderLayout.EAST, new ButtonPanel());
 		mainPanel.add(BorderLayout.WEST, new NamePanel());
-
 
 		pack();
 		setVisible(true);

@@ -1,5 +1,8 @@
 package com.sound.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiEvent;
 import javax.sound.midi.MidiSystem;
@@ -20,6 +23,11 @@ class MusicPlayer  {
 	private static Sequencer device ;
 	private static Track track ;
 	private static Sequence seq;
+	private List<Instrument> instList = new ArrayList<Instrument>(); 
+	
+	MusicPlayer(List<Instrument> instList){
+		this.instList=instList;
+	}
 
 
 	final void setUpPlayer(){
@@ -69,7 +77,7 @@ class MusicPlayer  {
 
 		log.debug("Building Track");
 
-		for(int i=0;i<BeatBox.TOTAL_INSTRUMENTS;i++){
+		for(int i=0;i<Instrument.TOTAL_INSTRUMENTS;i++){
 			int key = list[i];
 			if(key !=0){
 				track.add(makeEvent(144, 9, key, 100, i));

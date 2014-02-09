@@ -1,7 +1,6 @@
 package com.sound.service;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Label;
 
 import javax.swing.BorderFactory;
@@ -19,10 +18,10 @@ public class NamePanel extends JPanel {
 	 */
 	private static Logger log = LoggerFactory.getLogger(NamePanel.class);
 	private static final long serialVersionUID = -3428774737457273794L;
-	public final String[] instrumentNames = {	"Bass Drum","Closed Hi-Hat","Open Hi-Hat","Acoustic Snare",
-		"Crash Cymbai","Hand Clap","High Tom","Hi Bong","Maracas","Whistle",
-		"Low Conga","Cowbell","Vibraslap","Low-mid Tom","High Agogo","Open Hi conga"
-	};
+//	public final String[] instrumentNames = {	"Bass Drum","Closed Hi-Hat","Open Hi-Hat","Acoustic Snare",
+//		"Crash Cymbai","Hand Clap","High Tom","Hi Bong","Maracas","Whistle",
+//		"Low Conga","Cowbell","Vibraslap","Low-mid Tom","High Agogo","Open Hi conga"
+//	};
 
 	/**
 	 * Create the panel.
