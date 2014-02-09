@@ -32,9 +32,10 @@ class MainFrame extends JFrame {
 		mainPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(mainPanel);
 
-		mainPanel.add(BorderLayout.CENTER,new CheckboxPanel(instList));
 		mainPanel.add(BorderLayout.EAST, new ButtonPanel());
 		mainPanel.add(BorderLayout.WEST, new NamePanel(instList));
+		mainPanel.add(BorderLayout.CENTER,new CheckboxPanel(instList));
+
 
 		pack();
 		setVisible(true);

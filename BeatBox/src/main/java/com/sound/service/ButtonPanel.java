@@ -22,8 +22,6 @@ public class ButtonPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 5530997149568660460L;
-	/* Beat Box obj for listners TODO Not Sure abt implementation*/
-	BeatBox bBox = new BeatBox();
 
 
 	/**
@@ -40,7 +38,7 @@ public class ButtonPanel extends JPanel {
 		setLayout(gridBagLayout);
 		
 		JButton btnNewButton = new JButton("Start");
-		btnNewButton.addActionListener(bBox.new StartButtonListner());
+//		btnNewButton.addActionListener(bBox.new StartButtonListner());
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 1;
@@ -48,7 +46,7 @@ public class ButtonPanel extends JPanel {
 		add(btnNewButton, gbc_btnNewButton);
 		
 		JButton btnTempoUp = new JButton("Tempo Up");
-		btnTempoUp.addActionListener(bBox.new UpTempoButtonListner());
+//		btnTempoUp.addActionListener(bBox.new UpTempoButtonListner());
 		GridBagConstraints gbc_btnTempoUp = new GridBagConstraints();
 		gbc_btnTempoUp.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnTempoUp.insets = new Insets(0, 0, 5, 5);
@@ -57,7 +55,7 @@ public class ButtonPanel extends JPanel {
 		add(btnTempoUp, gbc_btnTempoUp);
 		
 		JButton btnStop = new JButton("Stop");
-		btnStop.addActionListener(bBox.new StopButtonListner());
+//		btnStop.addActionListener(bBox.new StopButtonListner());
 		GridBagConstraints gbc_btnStop = new GridBagConstraints();
 		gbc_btnStop.insets = new Insets(0, 0, 5, 5);
 		gbc_btnStop.gridx = 1;
@@ -65,7 +63,7 @@ public class ButtonPanel extends JPanel {
 		add(btnStop, gbc_btnStop);
 		
 		JButton btnTempoDown = new JButton("Tempo Down");
-		btnTempoDown.addActionListener(bBox.new DownTempoButtonListner());
+//		btnTempoDown.addActionListener(bBox.new DownTempoButtonListner());
 		GridBagConstraints gbc_btnTempoDown = new GridBagConstraints();
 		gbc_btnTempoDown.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnTempoDown.insets = new Insets(0, 0, 5, 5);

@@ -28,6 +28,7 @@ public class CheckboxPanel extends JPanel {
 		grid.setVgap(1);grid.setHgap(2);
 		setLayout(grid);
 		setBorder(BorderFactory.createLineBorder(Color.black));
+		log.debug("Number of Instruments to Add {} ",instList.size());
 		for(Instrument inst : instList){
 			log.debug("Instrument {} set ",inst.getInstrName());
 			for(int i=0;i<Instrument.TOTAL_BEAT;++i){
@@ -42,6 +43,7 @@ public class CheckboxPanel extends JPanel {
 				add(c);
 			}
 		}
+		log.trace("Finished Add CheckBox");
 
 	}
 
