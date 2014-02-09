@@ -3,6 +3,7 @@ package com.sound.service;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
@@ -15,25 +16,30 @@ public class CheckboxPanel extends JPanel {
 
 	private static final long serialVersionUID = 6723387682407232936L;
 	private static Logger log = LoggerFactory.getLogger(CheckboxPanel.class);
-	private static ArrayList<JCheckBox> cBoxList = new ArrayList<JCheckBox>();
 
 	/**
 	 * Create the panel.
+	 * @param instList 
 	 */
-	public CheckboxPanel() {
-		GridLayout grid = new GridLayout(BeatBox.TOTAL_INSTRUMENTS,BeatBox.TOTAL_INSTRUMENTS);
+	public CheckboxPanel(List<Instrument> instList) {
+		GridLayout grid = new GridLayout(Instrument.TOTAL_INSTRUMENT,Instrument.TOTAL_BEAT);
 		grid.setVgap(1);
 		grid.setHgap(2);
 		setLayout(grid);
 		setBorder(BorderFactory.createLineBorder(Color.black));
-		for(int i=0;i<256;i++){
-			JCheckBox c = new JCheckBox();
-			c.setSelected(false);
-			cBoxList.add(c);
-			add(c);
+		for(Instrument inst : instList){
+			
+			for(int j=0;j<Instrument.TOTAL_BEAT;++j){
+				JCheckBox c = new JCheckBox();
+				if(inst.getInstBeats(j)==true){
+					c.setSelected(true);
+				}else {
+					c.setSelected(false);
+				}
+				add(c);
+			}
 		}
 
-		log.trace("Check Box List Size : {}",cBoxList.size());
 	}
 
 	static int[][] getCheckBoxVal(){

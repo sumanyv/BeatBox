@@ -2,34 +2,31 @@ package com.sound.service;
 
 public class Instrument {
 
-	public static final int TOTAL_INSTRUMENTS=16;
-	private int instr_Id;
-	private String instr_name;
-	private boolean[] inst_beats;
+	public static final int TOTAL_INSTRUMENT=16;
+	public static final int TOTAL_BEAT=16;
+	private int instrId;
+	private String instrName;
+	private boolean[] instBeatStates;
 
 	public Instrument(int instr_Id, String instr_name) {
 		super();
-		this.instr_Id = instr_Id;
-		this.instr_name = instr_name;
-		this.inst_beats = new boolean[TOTAL_INSTRUMENTS];
+		this.instrId = instr_Id;
+		this.instrName = instr_name;
+		this.instBeatStates = new boolean[TOTAL_BEAT];
 	}
 	public int getInstr_Id() {
-		return instr_Id;
+		return instrId;
 	}
 
 	public String getInstr_name() {
-		return instr_name;
-	}
-
-	public boolean[] getInst_beats() {
-		return inst_beats;
+		return instrName;
 	}
 
 	public void setInstBeats(int location,boolean value){
-		inst_beats[location]=value;
+		instBeatStates[location]=value;
 	}
 	public boolean getInstBeats(int location){
-		return inst_beats[location];
+		return instBeatStates[location];
 	}
 
 }

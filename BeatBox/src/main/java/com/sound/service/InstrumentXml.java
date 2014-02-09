@@ -65,8 +65,8 @@ public class InstrumentXml {
 	}
 
 	
-	@SuppressWarnings("unchecked")
-	public static void readFromXml(){
+	@SuppressWarnings({ "unchecked", "resource" })
+	public static ArrayList<Instrument> readFromXml(){
 		
 		File file = new File(FILE_NAME) ;
 		BufferedReader br = null;
@@ -99,5 +99,6 @@ public class InstrumentXml {
 			log.debug("Instruments List is Empty Size : {} ",sb);
 		}
 		
+		return instList;
 	}
 }

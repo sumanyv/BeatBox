@@ -13,16 +13,14 @@ import org.slf4j.LoggerFactory;
 public class BeatBox {
 
 	/*Constants */
-//	public static final int TOTAL_INSTRUMENTS= 16;
-//	public static final int[] instruments =			{35,42,46,38,49,39,50,60,70,72,64,56,58,47,67,63};
 	private final Logger log = LoggerFactory.getLogger(BeatBox.class);
 	private MusicPlayer mPlayer;
 	private MainFrame gui;
-	private static List<Instrument> instList = new ArrayList<Instrument>();
+	private static ArrayList<Instrument> instList = new ArrayList<Instrument>();
 	
 	static{
 		
-		instList = InstrumentXml.read();
+		instList = InstrumentXml.readFromXml();
 	}
 	
 	public BeatBox(){
@@ -43,10 +41,10 @@ public class BeatBox {
 
 	private void start() {
 
-		int[][] CheckBox =new int[TOTAL_INSTRUMENTS][TOTAL_INSTRUMENTS]; 
+		int[][] CheckBox =new int[Instrument.TOTAL][Instrument.TOTAL]; 
 		/*Get User Selected CheckBox */
 		CheckBox= CheckboxPanel.getCheckBoxVal();
-		for(int i=0;i<TOTAL_INSTRUMENTS;++i){
+		for(int i=0;i<Instrument.TOTAL;++i){
 			try {
 				mPlayer.makeTracks(CheckBox[i]);
 			} catch (InvalidMidiDataException e) {

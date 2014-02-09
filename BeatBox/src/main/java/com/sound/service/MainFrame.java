@@ -22,10 +22,8 @@ class MainFrame extends JFrame {
 	private static final long serialVersionUID = 2148367511626434256L;
 	private static final String TITLE = "Cyber Beat Box";
 	private static final Logger log = LoggerFactory.getLogger(MainFrame.class);
-	private List<Instrument>instList = new ArrayList<Instrument>();
 
 	 MainFrame(List<Instrument> instList){
-		 this.instList=instList;
 
 		setTitle(TITLE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,9 +32,9 @@ class MainFrame extends JFrame {
 		mainPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(mainPanel);
 
-		mainPanel.add(BorderLayout.CENTER,new CheckboxPanel());
+		mainPanel.add(BorderLayout.CENTER,new CheckboxPanel(instList));
 		mainPanel.add(BorderLayout.EAST, new ButtonPanel());
-		mainPanel.add(BorderLayout.WEST, new NamePanel());
+		mainPanel.add(BorderLayout.WEST, new NamePanel(instList));
 
 		pack();
 		setVisible(true);
