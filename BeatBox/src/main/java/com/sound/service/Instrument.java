@@ -8,24 +8,24 @@ public class Instrument {
 	private String instrName;
 	private boolean[] instBeatStates;
 
-	public Instrument(int instr_Id, String instr_name) {
+	public Instrument(int instrId, String instrName) {
 		super();
-		this.instrId = instr_Id;
-		this.instrName = instr_name;
+		this.instrId = instrId;
+		this.instrName = instrName;
 		this.instBeatStates = new boolean[TOTAL_BEAT];
 	}
-	public int getInstr_Id() {
+	public int getInstrId() {
 		return instrId;
 	}
 
-	public String getInstr_name() {
+	public String getInstrName() {
 		return instrName;
 	}
 
-	public void setInstBeats(int location,boolean value){
+	public void setInstBeatStates(int location,boolean value){
 		instBeatStates[location]=value;
 	}
-	public boolean getInstBeats(int location){
+	public boolean getInstBeatStates(int location){
 		return instBeatStates[location];
 	}
 

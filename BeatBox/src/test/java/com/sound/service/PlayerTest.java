@@ -19,7 +19,7 @@ public class PlayerTest {
   }
   @BeforeMethod
   public void beforeMethod() {
-	  p = new MusicPlayer();
+	//  p = new MusicPlayer();
   }
 
   @AfterMethod

@@ -23,7 +23,7 @@ class MainFrame extends JFrame {
 	private static final String TITLE = "Cyber Beat Box";
 	private static final Logger log = LoggerFactory.getLogger(MainFrame.class);
 
-	 MainFrame(List<Instrument> instList){
+	 MainFrame(ArrayList<Instrument> instList){
 
 		setTitle(TITLE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

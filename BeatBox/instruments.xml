@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<Instruments>
+	<Instrument>
+		<instrId>35</instrId>
+		<instrName>Bass Drum</instrName>
+		<instBeatStates>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+		</instBeatStates>
+	</Instrument>
+	<Instrument>
+		<instrId>42</instrId>
+		<instrName>Closed Hi-Hat</instrName>
+		<instBeatStates>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+		</instBeatStates>
+	</Instrument>
+</Instruments>

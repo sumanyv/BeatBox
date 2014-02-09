@@ -19,8 +19,8 @@ public class Admin {
 
 		while(true){
 
-			System.out.println("Enter Instrument Name");
-			String name = sc.next();
+			System.out.println("Enter Instrument Name\n");
+			String name = sc.nextLine();
 
 			System.out.println("Enter Instrument Id\n");
 			int instId = Integer.parseInt(sc.next());

@@ -77,7 +77,7 @@ class MusicPlayer  {
 
 		log.debug("Building Track");
 
-		for(int i=0;i<Instrument.TOTAL_INSTRUMENTS;i++){
+		for(int i=0;i<Instrument.TOTAL_INSTRUMENT;i++){
 			int key = list[i];
 			if(key !=0){
 				track.add(makeEvent(144, 9, key, 100, i));

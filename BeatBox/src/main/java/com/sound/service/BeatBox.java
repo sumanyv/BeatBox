@@ -3,7 +3,6 @@ package com.sound.service;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.sound.midi.InvalidMidiDataException;
 
@@ -41,24 +40,23 @@ public class BeatBox {
 
 	private void start() {
 
-		int[][] CheckBox =new int[Instrument.TOTAL][Instrument.TOTAL]; 
 		/*Get User Selected CheckBox */
-		CheckBox= CheckboxPanel.getCheckBoxVal();
-		for(int i=0;i<Instrument.TOTAL;++i){
-			try {
-				mPlayer.makeTracks(CheckBox[i]);
-			} catch (InvalidMidiDataException e) {
-				e.printStackTrace();
-				log.error(e.getMessage());
-			}
-			log.trace("Music beat for device "+CheckBox[i]);
-		}
-		try {
-			mPlayer.playTrack();
-		} catch (InvalidMidiDataException e) {
-			log.error(e.getMessage());
-			e.printStackTrace();
-		}
+		instList= CheckboxPanel.getCheckBoxVal();
+//		for(int i=0;i<Instrument.TOTAL;++i){
+//			try {
+//				mPlayer.makeTracks(CheckBox[i]);
+//			} catch (InvalidMidiDataException e) {
+//				e.printStackTrace();
+//				log.error(e.getMessage());
+//			}
+//			log.trace("Music beat for device "+CheckBox[i]);
+//		}
+//		try {
+//			mPlayer.playTrack();
+//		} catch (InvalidMidiDataException e) {
+//			log.error(e.getMessage());
+//			e.printStackTrace();
+//		}
 	}
 	
 	private void stop(){

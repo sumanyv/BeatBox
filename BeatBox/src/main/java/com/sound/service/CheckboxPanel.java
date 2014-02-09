@@ -3,8 +3,6 @@ package com.sound.service;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
@@ -16,49 +14,52 @@ public class CheckboxPanel extends JPanel {
 
 	private static final long serialVersionUID = 6723387682407232936L;
 	private static Logger log = LoggerFactory.getLogger(CheckboxPanel.class);
+	private static ArrayList<Instrument> instList;
+	private static ArrayList<JCheckBox> cBoxList;
 
 	/**
 	 * Create the panel.
 	 * @param instList 
 	 */
-	public CheckboxPanel(List<Instrument> instList) {
+	public CheckboxPanel(ArrayList<Instrument> instList) {
+		CheckboxPanel.instList=instList;
+		CheckboxPanel.cBoxList= new ArrayList<JCheckBox>();
 		GridLayout grid = new GridLayout(Instrument.TOTAL_INSTRUMENT,Instrument.TOTAL_BEAT);
-		grid.setVgap(1);
-		grid.setHgap(2);
+		grid.setVgap(1);grid.setHgap(2);
 		setLayout(grid);
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		for(Instrument inst : instList){
-			
-			for(int j=0;j<Instrument.TOTAL_BEAT;++j){
+			log.debug("Instrument {} set ",inst.getInstrName());
+			for(int i=0;i<Instrument.TOTAL_BEAT;++i){
 				JCheckBox c = new JCheckBox();
-				if(inst.getInstBeats(j)==true){
+				if(inst.getInstBeatStates(i)==true){
 					c.setSelected(true);
 				}else {
 					c.setSelected(false);
 				}
+				cBoxList.add(c);
+				log.debug("Set Beat : {} , with Value : {} " ,i,inst.getInstBeatStates(i));
 				add(c);
 			}
 		}
 
 	}
 
-	static int[][] getCheckBoxVal(){
+	static ArrayList<Instrument> getCheckBoxVal(){
 
-		log.debug("Getting Checkbox value from screen");
-		int[][] trackList =new int[BeatBox.TOTAL_INSTRUMENTS][BeatBox.TOTAL_INSTRUMENTS];
-		for(int i=0;i<BeatBox.TOTAL_INSTRUMENTS;++i){
-			int key = BeatBox.instruments[i];
-			log.debug("Key Seleted : {}",key);
-			for(int j=0;j<BeatBox.TOTAL_INSTRUMENTS;++j){
-				JCheckBox jc = (JCheckBox) cBoxList.get(j+(BeatBox.TOTAL_INSTRUMENTS*i));
+		for(Instrument inst : instList){
+			log.debug("Getting Checkbox for Instrument : {} ",inst.getInstrName());
+			for(int i=0;i<Instrument.TOTAL_BEAT;++i){
+				JCheckBox jc = (JCheckBox) cBoxList.get(Instrument.TOTAL_BEAT);
 
-				if(jc.isSelected()){
-					trackList[i][j]=key;
+				if(jc.isSelected()==true){
+					inst.setInstBeatStates(i, true);
 				} else {
-					trackList[i][j]=0;
+					inst.setInstBeatStates(i, false);
 				}
 			}
 		}
-		return trackList;
+		return instList ;
 	}
+
 }

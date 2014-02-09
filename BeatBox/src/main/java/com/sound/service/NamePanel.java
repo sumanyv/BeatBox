@@ -29,8 +29,8 @@ public class NamePanel extends JPanel {
 		Box nameBox = new Box(BoxLayout.Y_AXIS);
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		for(Instrument inst : instList){
-			log.trace("Add Instrument Name  : {} , With Instrumet Id : {}",inst.getInstr_name(),inst.getInstr_Id());
-			nameBox.add(new Label(inst.getInstr_name()));
+			log.trace("Add Instrument Name  : {} , With Instrumet Id : {}",inst.getInstrName(),inst.getInstrId());
+			nameBox.add(new Label(inst.getInstrName()));
 		}
 		add(nameBox);
 	}
