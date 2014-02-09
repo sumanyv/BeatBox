@@ -44,4 +44,26 @@
 			<boolean>false</boolean>
 		</instBeatStates>
 	</Instrument>
+	<Instrument>
+		<instrId>46</instrId>
+		<instrName>Open Hi-Hat</instrName>
+		<instBeatStates>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+			<boolean>false</boolean>
+		</instBeatStates>
+	</Instrument>
 </Instruments>
