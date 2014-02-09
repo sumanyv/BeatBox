@@ -9,7 +9,7 @@ public class Player {
 	private static final Logger log = LoggerFactory.getLogger(Player.class);
 	
 	public static void main(String[] args){
-		log.debug("Started ClientA ");
+		log.debug("Started Player ");
 		BeatBox bBox = new BeatBox();
 		bBox.launch();	
 	}

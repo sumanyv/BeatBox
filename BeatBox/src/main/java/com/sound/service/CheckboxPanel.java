@@ -26,6 +26,7 @@ public class CheckboxPanel extends JPanel {
 		CheckboxPanel.cBoxList= new ArrayList<JCheckBox>();
 		GridLayout grid = new GridLayout(Instrument.TOTAL_INSTRUMENT,Instrument.TOTAL_BEAT);
 		grid.setVgap(1);grid.setHgap(2);
+		//TODO Check if the Check Box are correct
 		setLayout(grid);
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		log.debug("Number of Instruments to Add {} ",instList.size());

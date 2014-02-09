@@ -3,9 +3,6 @@ package com.sound.service;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.sound.midi.InvalidMidiDataException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
