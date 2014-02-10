@@ -13,5 +13,4 @@ public class Player {
 		BeatBox bBox = new BeatBox();
 		bBox.launch();	
 	}
-
 }

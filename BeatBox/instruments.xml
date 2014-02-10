@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <Instruments>
-	<Instrument>
+	<com.sound.service.Instrument>
 		<instrId>35</instrId>
 		<instrName>Bass Drum</instrName>
 		<instBeatStates>
@@ -21,8 +21,8 @@
 			<boolean>false</boolean>
 			<boolean>false</boolean>
 		</instBeatStates>
-	</Instrument>
-	<Instrument>
+	</com.sound.service.Instrument>
+	<com.sound.service.Instrument>
 		<instrId>42</instrId>
 		<instrName>Closed Hi-Hat</instrName>
 		<instBeatStates>
@@ -43,8 +43,8 @@
 			<boolean>false</boolean>
 			<boolean>false</boolean>
 		</instBeatStates>
-	</Instrument>
-	<Instrument>
+	</com.sound.service.Instrument>
+	<com.sound.service.Instrument>
 		<instrId>46</instrId>
 		<instrName>Open Hi-Hat</instrName>
 		<instBeatStates>
@@ -65,5 +65,5 @@
 			<boolean>false</boolean>
 			<boolean>false</boolean>
 		</instBeatStates>
-	</Instrument>
+	</com.sound.service.Instrument>
 </Instruments>

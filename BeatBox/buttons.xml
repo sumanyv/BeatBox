@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<Buttons>
+	<com.sound.service.Button>
+		<bName>Start</bName>
+		<bFill>n</bFill>
+		<gridX>1</gridX>
+		<gridY>1</gridY>
+	</com.sound.service.Button>
+	<com.sound.service.Button>
+		<bName>start</bName>
+		<bFill>n</bFill>
+		<gridX>1</gridX>
+		<gridY>1</gridY>
+	</com.sound.service.Button>
+</Buttons>

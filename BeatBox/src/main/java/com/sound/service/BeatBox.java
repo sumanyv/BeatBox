@@ -18,7 +18,7 @@ public class BeatBox {
 	 * Set Up the Music Player and the User Inteface and Controller
 	 */
 	public void launch(){
-		this.instList = InstrumentXml.readFromXml();
+		this.instList = XmlOperation.readFromXml();
 		log.trace("Initialized Instruments From Xml File instList := {}",instList);
 		this.mPlayer = new MusicPlayer(instList);
 		log.trace("Music Player Created mPlayer := {}",mPlayer);

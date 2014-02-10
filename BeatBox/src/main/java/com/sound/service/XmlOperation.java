@@ -15,28 +15,41 @@ import org.slf4j.LoggerFactory;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 
-public class InstrumentXml {
+public class XmlOperation {
 
-	private static final String FILE_NAME = "instruments.xml";
-	private static final Logger log = LoggerFactory.getLogger(InstrumentXml.class);
-	private static ArrayList<Instrument> instList = new ArrayList<Instrument>();
+	private String fileName;
+	private final Logger log = LoggerFactory.getLogger(XmlOperation.class);
+	private ArrayList<?> currentList = null;
 	
-	static{
-		readFromXml();
+	public XmlOperation(String fileName ){
+		this.fileName = fileName;
 	}
+	/**
+	 * 
+	 * @param writeInst
+	 * @param root Root Node of Xml Name ex : Instruments
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> void writeToXml( T writeInst,String root){
 
-	public static void writeToXml(ArrayList<Instrument> writeInst){
-
-		instList.addAll(writeInst);
-		File file = new File(FILE_NAME) ;
+		/* First Read the Data from xml */
+		this.currentList=readFromXml(root);
+		ArrayList <T>writeList = new ArrayList<T>();
+		if(this.currentList!=null){
+			writeList = (ArrayList<T>) this.currentList;
+		}
+		writeList.add(writeInst);
+		
+		log.debug("Argument Passed root Node : {} ",root);
+		log.debug("Individual node Name : {} ",writeList.getClass().getName());
+		File file = new File(fileName) ;
 		FileOutputStream fo=null;
 
 		XStream xstream = new XStream(new StaxDriver());
-		xstream.alias("Instrument", Instrument.class);
-		xstream.alias("Instruments", List.class);
+		xstream.alias(root, List.class);
 		
-		log.debug("Added Instruments Size : {} ",instList.size() );
-		String xml = xstream.toXML(instList);
+		log.debug("Added {} Size : {} ",writeList.getClass().getSimpleName(),writeList.size() );
+		String xml = xstream.toXML(writeList);
 
 		byte[] xmlInChar = xml.getBytes();
 		// if file does not exists, then create it
@@ -64,13 +77,13 @@ public class InstrumentXml {
 		}
 	}
 
-	
 	@SuppressWarnings({ "unchecked", "resource" })
-	public static ArrayList<Instrument> readFromXml(){
+	public <T> ArrayList<T> readFromXml(String root){
 		
-		File file = new File(FILE_NAME) ;
+		File file = new File(fileName) ;
 		BufferedReader br = null;
 		String xml=null;
+		this.currentList = new ArrayList<T>();
 
 		try {
 			br = new BufferedReader(new FileReader(file));
@@ -89,16 +102,15 @@ public class InstrumentXml {
 		}
 		
 		XStream xstream = new XStream(new StaxDriver());
-		xstream.alias("Instrument", Instrument.class);
-		xstream.alias("Instruments", List.class);
+		xstream.alias(root, List.class);
 		
 		if(sb.length()!=0){
-		instList = (ArrayList<Instrument>)xstream.fromXML(sb.toString());
-		log.debug("Total Instruments Read From Xml : {} ",instList.size());
+		this.currentList = (ArrayList<T>)xstream.fromXML(sb.toString());
+		log.debug("Total {} Read From Xml : {} ",this.currentList.getClass().getSimpleName(),this.currentList.size());
 		}else{
-			log.debug("Instruments List is Empty Size : {} ",sb);
+			log.debug(" {} Xml is Empty ",fileName);
 		}
 		
-		return instList;
+		return (ArrayList<T>) this.currentList;
 	}
 }
