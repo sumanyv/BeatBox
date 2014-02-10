@@ -1,8 +1,9 @@
-package com.sound.service;
+package com.sound.service.view;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,7 +11,9 @@ import javax.swing.border.EmptyBorder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class MainFrame extends JFrame {
+import com.sound.service.Instrument;
+
+public class MainFrame extends JFrame {
 	
 	private JPanel mainPanel;
 
@@ -21,7 +24,7 @@ class MainFrame extends JFrame {
 	private static final String TITLE = "Cyber Beat Box";
 	private static final Logger log = LoggerFactory.getLogger(MainFrame.class);
 
-	 MainFrame(ArrayList<Instrument> instList){
+	 public MainFrame(ArrayList<Instrument> instList){
 
 		setTitle(TITLE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

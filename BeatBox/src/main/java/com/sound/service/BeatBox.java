@@ -3,8 +3,12 @@ package com.sound.service;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.sound.service.view.CheckboxPanel;
+import com.sound.service.view.MainFrame;
 
 public class BeatBox {
 

@@ -1,4 +1,4 @@
-package com.sound.service;
+package com.sound.service.view;
 
 import java.awt.Color;
 import java.awt.Label;
@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.sound.service.Instrument;
 
 public class NamePanel extends JPanel {
 

@@ -1,4 +1,4 @@
-package com.sound.service;
+package com.sound.service.view;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;

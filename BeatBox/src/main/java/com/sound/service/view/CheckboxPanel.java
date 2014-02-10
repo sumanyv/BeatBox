@@ -1,14 +1,17 @@
-package com.sound.service;
+package com.sound.service.view;
 
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.sound.service.Instrument;
 
 public class CheckboxPanel extends JPanel {
 
@@ -48,7 +51,7 @@ public class CheckboxPanel extends JPanel {
 
 	}
 
-	static ArrayList<Instrument> getCheckBoxVal(){
+	public static ArrayList<Instrument> getCheckBoxVal(){
 
 		for(Instrument inst : instList){
 			log.debug("Getting Checkbox for Instrument : {} ",inst.getInstrName());
