@@ -3,6 +3,7 @@ package com.sound.service.view;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
@@ -18,7 +19,7 @@ public class CheckboxPanel extends JPanel {
 	private static final long serialVersionUID = 6723387682407232936L;
 	private static Logger log = LoggerFactory.getLogger(CheckboxPanel.class);
 	private static ArrayList<Instrument> instList;
-	private static ArrayList<JCheckBox> cBoxList;
+	private static HashMap<String,JCheckBox[]> cBoxMap;
 
 	/**
 	 * Create the panel.
@@ -26,27 +27,37 @@ public class CheckboxPanel extends JPanel {
 	 */
 	public CheckboxPanel(ArrayList<Instrument> instList) {
 		CheckboxPanel.instList=instList;
-		CheckboxPanel.cBoxList= new ArrayList<JCheckBox>();
-		GridLayout grid = new GridLayout(Instrument.TOTAL_INSTRUMENT,Instrument.TOTAL_BEAT);
+		CheckboxPanel.cBoxMap= new HashMap<String,JCheckBox[]>();
+		GridLayout grid = new GridLayout(instList.size(),Instrument.TOTAL_BEAT);
 		grid.setVgap(1);grid.setHgap(2);
+		String instName=null;
+		JCheckBox[] singleInstArr = null;
 		//TODO Check if the Check Box are correct
 		setLayout(grid);
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		log.debug("Number of Instruments to Add {} ",instList.size());
+		
 		for(Instrument inst : instList){
-			log.debug("Instrument {} set ",inst.getInstrName());
+			
+			instName= inst.getInstrName();
+			singleInstArr = new JCheckBox[Instrument.TOTAL_BEAT];
+
+			log.debug("Instrument {} set ",instName);
 			for(int i=0;i<Instrument.TOTAL_BEAT;++i){
+
 				JCheckBox c = new JCheckBox();
 				if(inst.getInstBeatStates(i)==true){
 					c.setSelected(true);
 				}else {
 					c.setSelected(false);
 				}
-				cBoxList.add(c);
 				log.debug("Set Beat : {} , with Value : {} " ,i,inst.getInstBeatStates(i));
-				add(c);
+				singleInstArr[i]=c;
+				add(singleInstArr[i]);
 			}
+			CheckboxPanel.cBoxMap.put(instName, singleInstArr);
 		}
+		log.trace("Total CheckBox Mapped : {} ",cBoxMap.size());
 		log.trace("Finished Add CheckBox");
 
 	}
@@ -54,9 +65,11 @@ public class CheckboxPanel extends JPanel {
 	public static ArrayList<Instrument> getCheckBoxVal(){
 
 		for(Instrument inst : instList){
-			log.debug("Getting Checkbox for Instrument : {} ",inst.getInstrName());
+			String instName = inst.getInstrName();
+			JCheckBox[] singleInstArr = CheckboxPanel.cBoxMap.get(instName);
+			log.debug("Getting Checkbox for Instrument : {} ",instName);
 			for(int i=0;i<Instrument.TOTAL_BEAT;++i){
-				JCheckBox jc = (JCheckBox) cBoxList.get(i);
+				JCheckBox jc = singleInstArr[i];
 
 				if(jc.isSelected()==true){
 					inst.setInstBeatStates(i, true);
