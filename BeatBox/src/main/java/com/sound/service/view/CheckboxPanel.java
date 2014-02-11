@@ -56,10 +56,11 @@ public class CheckboxPanel extends JPanel {
 		for(Instrument inst : instList){
 			log.debug("Getting Checkbox for Instrument : {} ",inst.getInstrName());
 			for(int i=0;i<Instrument.TOTAL_BEAT;++i){
-				JCheckBox jc = (JCheckBox) cBoxList.get(Instrument.TOTAL_BEAT);
+				JCheckBox jc = (JCheckBox) cBoxList.get(i);
 
 				if(jc.isSelected()==true){
 					inst.setInstBeatStates(i, true);
+					log.trace(" Instrument : {} Beat : {} Checked ",inst.getInstrName(),i);
 				} else {
 					inst.setInstBeatStates(i, false);
 				}

@@ -9,7 +9,6 @@ import javax.swing.JButton;
 
 import com.sound.service.Button;
 import com.sound.service.ButtonFactory;
-import com.sound.service.Controller;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;

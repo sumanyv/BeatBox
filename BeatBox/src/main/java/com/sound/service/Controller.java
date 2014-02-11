@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sound.service.view.CheckboxPanel;
 import com.sound.service.view.MainFrame;
 
 public class Controller implements ActionListener{
@@ -31,14 +32,16 @@ public class Controller implements ActionListener{
 		String buttonText = e.getActionCommand();
 		log.debug("Key Pressed : {} ",buttonText);
 
-		if(buttonText=="Start"){
+		if(buttonText.equals("Start")){
 			//TODO
+		log.trace("Inside Start Listner");
+		ArrayList<Instrument> checkedInstrument=	CheckboxPanel.getCheckBoxVal();
 
-		}else if(buttonText == "Stop"){
+		}else if(buttonText.equals("Stop")){
 			mPlayer.stopTrack();
-		}else if(buttonText == "Tempo Up"){
+		}else if(buttonText.equals("Tempo Up")){
 			mPlayer.incrementTempo();
-		}else if(buttonText == "Tempo Down"){
+		}else if(buttonText.equals("Tempo Down")){
 			mPlayer.decrementTempo();
 		}
 	}
