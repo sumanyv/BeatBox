@@ -1,8 +1,6 @@
 package com.sound.service;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiEvent;
 import javax.sound.midi.MidiSystem;
@@ -18,17 +16,11 @@ import org.slf4j.LoggerFactory;
 class MusicPlayer  {
 
 	private static final Logger log = LoggerFactory.getLogger(MusicPlayer.class);
-	private final float TEMPO_FACTOR_UP =1.03f;
-	private final float TEMPO_FACTOR_DOWN = 0.97f;
+	private static final float TEMPO_FACTOR_UP =1.03f;
+	private static final float TEMPO_FACTOR_DOWN = 0.97f;
 	private static Sequencer device ;
 	private static Track track ;
 	private static Sequence seq;
-	private List<Instrument> instList = new ArrayList<Instrument>(); 
-	
-	MusicPlayer(List<Instrument> instList){
-		this.instList=instList;
-	}
-
 
 	final void setUpPlayer(){
 
@@ -49,46 +41,59 @@ class MusicPlayer  {
 		log.info("Player SetUp Succesful");
 	}
 
-	void playTrack() throws InvalidMidiDataException{
-		device.setSequence(seq);
-		device.setLoopCount(Sequencer.LOOP_CONTINUOUSLY);
-		device.start();
-		log.info("Play Track Started");
+	static void playTrack(ArrayList<Instrument> checkedInstrument) {
+		try {
+			makeTracks(checkedInstrument);
+			device.setSequence(seq);
+			device.setLoopCount(Sequencer.LOOP_CONTINUOUSLY);
+			device.start();
+			log.info("Play Track Started");
+		} catch (InvalidMidiDataException e) {
+			log.error(e.getMessage());
+			e.printStackTrace();
+		}
+
 	}
 
-	void stopTrack(){
+	static void stopTrack(){
 		device.stop();
 		log.info("Track Stopped");
 	}
 
-	void incrementTempo(){
+	static void incrementTempo(){
 		float tempFactor = device.getTempoFactor();
 		device.setTempoFactor((float) (tempFactor * TEMPO_FACTOR_UP));
 		log.info("Tempo Increased by : {}",TEMPO_FACTOR_UP);
 	}
 
-	void decrementTempo(){
+	static void decrementTempo(){
 		float tempFactor = device.getTempoFactor();
 		device.setTempoFactor((float)(tempFactor * TEMPO_FACTOR_DOWN));
 		log.info("Tempo Decreased by : {}",TEMPO_FACTOR_DOWN);
 	}
 
-	void makeTracks(int[] list) throws InvalidMidiDataException{
+	static void makeTracks(ArrayList<Instrument> checkedInstrument) throws InvalidMidiDataException{
 
-		log.debug("Building Track");
-//TODO IMpelemnt
-//		for(int i=0;i<Instrument.TOTAL_INSTRUMENT;i++){
-//			int key = list[i];
-//			if(key !=0){
-//				track.add(makeEvent(144, 9, key, 100, i));
-//				track.add(makeEvent(128, 9, key, 100, i+1));
-//				log.trace("Building track for Key {} ",key);
-//				track.add(makeEvent(176, 1, 127, 0, 16));// For Animation Listener
-//			}
-//		}
+		log.trace("Building Track");
+		for(Instrument inst : checkedInstrument){
+
+			String instName = inst.getInstrName();
+			int instId = inst.getInstrId();
+			log.debug(" Instrument : {} , Instrument Id : {} ",instName,instId);
+
+			for(int i=0;i<Instrument.TOTAL_BEAT;++i){
+				if(inst.getInstBeatStates(i)==true){
+					track.add(makeEvent(144, 9, instId, 100, i));
+					track.add(makeEvent(128, 9, instId, 100, i+1));
+					//TODO (Verify Agagin )Add Listener for Animation
+					track.add(makeEvent(176, 1, 127, 9, 16));
+
+				}
+			}
+		}
 	}
 
-	private MidiEvent makeEvent(int comd,int chan ,int one ,int two ,int tick) throws InvalidMidiDataException{
+	private static MidiEvent makeEvent(int comd,int chan ,int one ,int two ,int tick) throws InvalidMidiDataException{
 		MidiEvent event = null;
 		ShortMessage sMsg = new ShortMessage();
 		sMsg.setMessage(comd, chan, one, two);

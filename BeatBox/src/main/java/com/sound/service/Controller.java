@@ -8,20 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.sound.service.view.CheckboxPanel;
-import com.sound.service.view.MainFrame;
 
 public class Controller implements ActionListener{
 
 	private final Logger log = LoggerFactory.getLogger(Controller.class);
-	private MusicPlayer mPlayer;
-	private MainFrame frame;
-	private ArrayList<Instrument> instList = new ArrayList<Instrument>();
 
-	Controller(MusicPlayer mPlayer, MainFrame frame, ArrayList<Instrument> instList){
-		this.mPlayer=mPlayer;
-		this.frame=frame;
-		this.instList=instList;
-	}
 
 	/* For Button to Add Listeners*/
 	public Controller() {
@@ -32,20 +23,35 @@ public class Controller implements ActionListener{
 		String buttonText = e.getActionCommand();
 		log.debug("Key Pressed : {} ",buttonText);
 
-		if(buttonText.equals("Start")){
-			//TODO
-		log.trace("Inside Start Listner");
-		ArrayList<Instrument> checkedInstrument=	CheckboxPanel.getCheckBoxVal();
+		switch(buttonText){
+		case "Start" :
+			log.trace("Inside Start Listner");
+			ArrayList<Instrument> checkedInstrument =	CheckboxPanel.getCheckBoxVal();
+			MusicPlayer.playTrack(checkedInstrument);
 
-		}else if(buttonText.equals("Stop")){
-			mPlayer.stopTrack();
-		}else if(buttonText.equals("Tempo Up")){
-			mPlayer.incrementTempo();
-		}else if(buttonText.equals("Tempo Down")){
-			mPlayer.decrementTempo();
+			break;
+		case "Stop" :
+			log.trace("Inside Stop Listner");
+			MusicPlayer.stopTrack();
+			break;
+		case "Tempo Up" :
+			log.trace("Inside Tempo Up Listner");
+			MusicPlayer.incrementTempo();
+
+			break;
+		case "Tempo Down" :
+			log.trace("Inside Tempo Down Listner");
+			MusicPlayer.decrementTempo();
+
+			break;
+		case "Save" :
+			log.trace("Inside Save Listner");
+			break;
+		case "Restore" :
+			log.trace("Inside Restore Listner");
+			break;
 		}
 	}
-
 
 	//	private void start() {
 	/*Get User Selected CheckBox */
