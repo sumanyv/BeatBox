@@ -18,23 +18,27 @@ import com.thoughtworks.xstream.io.xml.StaxDriver;
 public class XmlOperation {
 
 	private static final Logger log = LoggerFactory.getLogger(XmlOperation.class);
-	private static ArrayList<?> currentList = null;
+	
+	public static <T> void appendToXml(T append , String fileName){
+		 ArrayList<T> currentList = new ArrayList<T>();
+		 ArrayList<T> readList = readFromXml(fileName);
+		 
+		 if(readList!=null){
+			 currentList = readList;
+			 currentList.add(append);
+		 }else{
+			 currentList.add(append);
+		 }
+		 writeToXml(currentList, fileName);
+	}
 
 	/**
 	 * 
 	 * @param writeInst
-	 * @param root Root Node of Xml Name ex : Instruments
+	 * @param fileName Root Node of Xml Name ex : instruments
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> void writeToXml( T writeInst,String fileName){
-
-		/* First Read the Data from xml */
-		currentList=readFromXml(fileName+".xml");
-		ArrayList <T>writeList = new ArrayList<T>();
-		if(currentList!=null){
-			writeList = (ArrayList<T>) currentList;
-		}
-		writeList.add(writeInst);
+	public static <T> void writeToXml(ArrayList< T> writeList,String fileName){
 		
 		log.debug("Argument Passed root Node : {} ",fileName);
 		log.debug("Individual node Name : {} ",writeList.getClass().getName());
@@ -79,7 +83,7 @@ public class XmlOperation {
 		File file = new File(fileName+".xml") ;
 		BufferedReader br = null;
 		String xml=null;
-		currentList = new ArrayList<T>();
+		ArrayList<T> currentList = new ArrayList<T>();
 
 		try {
 			br = new BufferedReader(new FileReader(file));

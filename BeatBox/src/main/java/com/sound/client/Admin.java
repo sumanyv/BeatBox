@@ -26,7 +26,7 @@ public class Admin {
 				sc.nextLine();
 				
 				Instrument inst = new Instrument(instId, name);
-				XmlOperation.writeToXml(inst,"instruments");
+				XmlOperation.appendToXml(inst,"instruments");
 				
 				System.out.println("Press 1 to Exit");
 				String exit = sc.nextLine();
@@ -48,7 +48,7 @@ public class Admin {
 				int gridY = Integer.parseInt(sc.nextLine());
 				
 				Button b = new Button(name, fill, gridX, gridY);
-				XmlOperation.writeToXml(b,"buttons");
+				XmlOperation.appendToXml(b,"buttons");
 				
 				System.out.println("Press 1 to Exit");
 				String exit = sc.next();

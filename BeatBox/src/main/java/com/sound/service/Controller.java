@@ -12,6 +12,7 @@ import com.sound.service.view.CheckboxPanel;
 public class Controller implements ActionListener{
 
 	private final Logger log = LoggerFactory.getLogger(Controller.class);
+	private static ArrayList<Instrument> checkedInstrument;
 
 
 	/* For Button to Add Listeners*/
@@ -26,7 +27,7 @@ public class Controller implements ActionListener{
 		switch(buttonText){
 		case "Start" :
 			log.trace("Inside Start Listner");
-			ArrayList<Instrument> checkedInstrument =	CheckboxPanel.getCheckBoxVal();
+			checkedInstrument=CheckboxPanel.getCheckBoxVal();
 			MusicPlayer.playTrack(checkedInstrument);
 
 			break;
@@ -46,6 +47,10 @@ public class Controller implements ActionListener{
 			break;
 		case "Save" :
 			log.trace("Inside Save Listner");
+			//Saving What is currently playing
+			InstrumentFactory.saveInstruments(checkedInstrument);
+			
+
 			break;
 		case "Restore" :
 			log.trace("Inside Restore Listner");
