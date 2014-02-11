@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<Instruments>
+<instruments>
 	<com.sound.service.Instrument>
 		<instrId>35</instrId>
 		<instrName>Bass Drum</instrName>
@@ -66,4 +66,4 @@
 			<boolean>false</boolean>
 		</instBeatStates>
 	</com.sound.service.Instrument>
-</Instruments>
+</instruments>

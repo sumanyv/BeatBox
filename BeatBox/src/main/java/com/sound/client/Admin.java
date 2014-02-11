@@ -18,7 +18,6 @@ public class Admin {
 		switch(input){
 
 		case 1: 
-			XmlOperation xmlInstrument = new XmlOperation("instruments.xml");
 			while(true){
 				System.out.println("Enter Instrument Name\n");
 				String name = sc.nextLine();
@@ -27,7 +26,7 @@ public class Admin {
 				sc.nextLine();
 				
 				Instrument inst = new Instrument(instId, name);
-				xmlInstrument.writeToXml(inst,"Instruments");
+				XmlOperation.writeToXml(inst,"instruments");
 				
 				System.out.println("Press 1 to Exit");
 				String exit = sc.nextLine();
@@ -38,7 +37,6 @@ public class Admin {
 			sc.close();
 			break;
 		case 2:
-			XmlOperation xmlButton = new XmlOperation("button.xml");
 			while(true){
 				System.out.println("Enter Button Name ");
 				String name = sc.nextLine();
@@ -50,7 +48,7 @@ public class Admin {
 				int gridY = Integer.parseInt(sc.nextLine());
 				
 				Button b = new Button(name, fill, gridX, gridY);
-				xmlButton.writeToXml(b,"Buttons");
+				XmlOperation.writeToXml(b,"buttons");
 				
 				System.out.println("Press 1 to Exit");
 				String exit = sc.next();

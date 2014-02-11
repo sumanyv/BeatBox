@@ -1,15 +1,39 @@
 <?xml version="1.0" ?>
-<Buttons>
+<buttons>
 	<com.sound.service.Button>
 		<bName>Start</bName>
-		<bFill>n</bFill>
+		<bFill>HORIZONTAL</bFill>
 		<gridX>1</gridX>
 		<gridY>1</gridY>
 	</com.sound.service.Button>
 	<com.sound.service.Button>
-		<bName>start</bName>
-		<bFill>n</bFill>
-		<gridX>1</gridX>
+		<bName>Tempo Up</bName>
+		<bFill>HORIZONTAL</bFill>
+		<gridX>3</gridX>
 		<gridY>1</gridY>
 	</com.sound.service.Button>
-</Buttons>
+	<com.sound.service.Button>
+		<bName>Stop</bName>
+		<bFill>HORIZONTAL</bFill>
+		<gridX>1</gridX>
+		<gridY>3</gridY>
+	</com.sound.service.Button>
+	<com.sound.service.Button>
+		<bName>Tempo Down</bName>
+		<bFill>HORIZONTAL</bFill>
+		<gridX>3</gridX>
+		<gridY>3</gridY>
+	</com.sound.service.Button>
+	<com.sound.service.Button>
+		<bName>Save</bName>
+		<bFill>HORIZONTAL</bFill>
+		<gridX>1</gridX>
+		<gridY>5</gridY>
+	</com.sound.service.Button>
+	<com.sound.service.Button>
+		<bName>Restore</bName>
+		<bFill>HORIZONTAL</bFill>
+		<gridX>3</gridX>
+		<gridY>5</gridY>
+	</com.sound.service.Button>
+</buttons>

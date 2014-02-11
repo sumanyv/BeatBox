@@ -17,36 +17,32 @@ import com.thoughtworks.xstream.io.xml.StaxDriver;
 
 public class XmlOperation {
 
-	private String fileName;
-	private final Logger log = LoggerFactory.getLogger(XmlOperation.class);
-	private ArrayList<?> currentList = null;
-	
-	public XmlOperation(String fileName ){
-		this.fileName = fileName;
-	}
+	private static final Logger log = LoggerFactory.getLogger(XmlOperation.class);
+	private static ArrayList<?> currentList = null;
+
 	/**
 	 * 
 	 * @param writeInst
 	 * @param root Root Node of Xml Name ex : Instruments
 	 */
 	@SuppressWarnings("unchecked")
-	public <T> void writeToXml( T writeInst,String root){
+	public static <T> void writeToXml( T writeInst,String fileName){
 
 		/* First Read the Data from xml */
-		this.currentList=readFromXml(root);
+		currentList=readFromXml(fileName+".xml");
 		ArrayList <T>writeList = new ArrayList<T>();
-		if(this.currentList!=null){
-			writeList = (ArrayList<T>) this.currentList;
+		if(currentList!=null){
+			writeList = (ArrayList<T>) currentList;
 		}
 		writeList.add(writeInst);
 		
-		log.debug("Argument Passed root Node : {} ",root);
+		log.debug("Argument Passed root Node : {} ",fileName);
 		log.debug("Individual node Name : {} ",writeList.getClass().getName());
 		File file = new File(fileName) ;
 		FileOutputStream fo=null;
 
 		XStream xstream = new XStream(new StaxDriver());
-		xstream.alias(root, List.class);
+		xstream.alias(fileName, List.class);
 		
 		log.debug("Added {} Size : {} ",writeList.getClass().getSimpleName(),writeList.size() );
 		String xml = xstream.toXML(writeList);
@@ -78,12 +74,12 @@ public class XmlOperation {
 	}
 
 	@SuppressWarnings({ "unchecked", "resource" })
-	public <T> ArrayList<T> readFromXml(String root){
+	public static <T> ArrayList<T> readFromXml(String fileName){
 		
-		File file = new File(fileName) ;
+		File file = new File(fileName+".xml") ;
 		BufferedReader br = null;
 		String xml=null;
-		this.currentList = new ArrayList<T>();
+		currentList = new ArrayList<T>();
 
 		try {
 			br = new BufferedReader(new FileReader(file));
@@ -102,15 +98,14 @@ public class XmlOperation {
 		}
 		
 		XStream xstream = new XStream(new StaxDriver());
-		xstream.alias(root, List.class);
+		xstream.alias(fileName, List.class);
 		
 		if(sb.length()!=0){
-		this.currentList = (ArrayList<T>)xstream.fromXML(sb.toString());
-		log.debug("Total {} Read From Xml : {} ",this.currentList.getClass().getSimpleName(),this.currentList.size());
+		currentList = (ArrayList<T>)xstream.fromXML(sb.toString());
+		log.debug("Total {} Read From Xml : {} ",currentList.getClass().getSimpleName(),currentList.size());
 		}else{
 			log.debug(" {} Xml is Empty ",fileName);
 		}
-		
-		return (ArrayList<T>) this.currentList;
+		return (ArrayList<T>) currentList;
 	}
 }

@@ -7,11 +7,14 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
 
+import com.sound.service.Button;
+import com.sound.service.ButtonFactory;
 import com.sound.service.Controller;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.ArrayList;
 
 /** 
  * This is our Side Button Panel
@@ -24,13 +27,14 @@ public class ButtonPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 5530997149568660460L;
-	private Controller controlListner = new Controller();
-
+	private ArrayList<Button> buttonList;
 
 	/**
 	 * Create the panel.
 	 */
 	public ButtonPanel() {
+		
+		buttonList = ButtonFactory.getButtons();
 		
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -40,55 +44,20 @@ public class ButtonPanel extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JButton btnNewButton = new JButton("Start");
-		btnNewButton.addActionListener(controlListner);
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton.gridx = 1;
-		gbc_btnNewButton.gridy = 1;
-		add(btnNewButton, gbc_btnNewButton);
 		
-		JButton btnTempoUp = new JButton("Tempo Up");
-		btnTempoUp.addActionListener(controlListner);
-		GridBagConstraints gbc_btnTempoUp = new GridBagConstraints();
-		gbc_btnTempoUp.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnTempoUp.insets = new Insets(0, 0, 5, 5);
-		gbc_btnTempoUp.gridx = 3;
-		gbc_btnTempoUp.gridy = 1;
-		add(btnTempoUp, gbc_btnTempoUp);
+		for(Button b : buttonList){
+			
+			JButton button = new JButton(b.getbName());
+			button.addActionListener(Button.getListener());
+			GridBagConstraints gbc_button = new GridBagConstraints();
+			gbc_button.fill = GridBagConstraints.HORIZONTAL;
+			int[] insert = Button.getInsert();
+			gbc_button.insets = new Insets(insert[0],insert[1],insert[2],insert[3]);
+			gbc_button.gridx = b.getGridX();
+			gbc_button.gridy = b.getGridY();
+			add(button,gbc_button);
+		}
 		
-		JButton btnStop = new JButton("Stop");
-		btnStop.addActionListener(controlListner);
-		GridBagConstraints gbc_btnStop = new GridBagConstraints();
-		gbc_btnStop.insets = new Insets(0, 0, 5, 5);
-		gbc_btnStop.gridx = 1;
-		gbc_btnStop.gridy = 3;
-		add(btnStop, gbc_btnStop);
-		
-		JButton btnTempoDown = new JButton("Tempo Down");
-//		btnTempoDown.addActionListener(bBox.new DownTempoButtonListner());
-		GridBagConstraints gbc_btnTempoDown = new GridBagConstraints();
-		gbc_btnTempoDown.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnTempoDown.insets = new Insets(0, 0, 5, 5);
-		gbc_btnTempoDown.gridx = 3;
-		gbc_btnTempoDown.gridy = 3;
-		add(btnTempoDown, gbc_btnTempoDown);
-		
-		JButton btnSave = new JButton("Save");// TODO Add Listeners
-		GridBagConstraints gbc_btnSave = new GridBagConstraints();
-		gbc_btnSave.insets = new Insets(0, 0, 0, 5);
-		gbc_btnSave.gridx = 1;
-		gbc_btnSave.gridy = 5;
-		add(btnSave, gbc_btnSave);
-		
-		JButton btnRestore = new JButton("Restore"); //TODO Add Listeners
-		GridBagConstraints gbc_btnRestore = new GridBagConstraints();
-		gbc_btnRestore.insets = new Insets(0, 0, 0, 5);
-		gbc_btnRestore.fill = GridBagConstraints.BOTH;
-		gbc_btnRestore.gridx = 3;
-		gbc_btnRestore.gridy = 5;
-		add(btnRestore, gbc_btnRestore);
-
 	}
 
 }
