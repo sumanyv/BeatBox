@@ -12,6 +12,9 @@ public class InstrumentFactory {
 	}
 	
 	public static ArrayList<Instrument> getInstruments(){
+		for(Instrument inst : instrumentButton){
+			inst.setBeats(new Beats());
+		}
 		return instrumentButton;
 	}
 	

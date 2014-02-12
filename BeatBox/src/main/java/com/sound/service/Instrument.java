@@ -28,5 +28,8 @@ public class Instrument {
 	public boolean getInstBeatStates(int location){
 		return beats.getStates(location);
 	}
+	public void setBeats(Beats b){
+		this.beats=b;
+	}
 
 }

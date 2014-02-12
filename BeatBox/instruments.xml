@@ -1,1 +1,19 @@
-<?xml version="1.0" ?><instruments><com.sound.service.Instrument><instrId>35</instrId><instrName>Bass Drum</instrName><beats><states><boolean>true</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean></states></beats></com.sound.service.Instrument><com.sound.service.Instrument><instrId>42</instrId><instrName>Closed Hi-Hat</instrName><beats><states><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>true</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean></states></beats></com.sound.service.Instrument><com.sound.service.Instrument><instrId>46</instrId><instrName>Open Hi-Hat</instrName><beats><states><boolean>false</boolean><boolean>false</boolean><boolean>true</boolean><boolean>false</boolean><boolean>true</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>true</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean></states></beats></com.sound.service.Instrument><com.sound.service.Instrument><instrId>38</instrId><instrName>Acoustic Snare</instrName><beats><states><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>true</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean><boolean>false</boolean></states></beats></com.sound.service.Instrument></instruments>
+<?xml version="1.0" ?>
+<instruments>
+	<com.sound.service.Instrument>
+		<instrId>35</instrId>
+		<instrName>Bass Drum</instrName>
+	</com.sound.service.Instrument>
+	<com.sound.service.Instrument>
+		<instrId>42</instrId>
+		<instrName>Closed Hi-Hat</instrName>
+	</com.sound.service.Instrument>
+	<com.sound.service.Instrument>
+		<instrId>46</instrId>
+		<instrName>Open Hi-Hat</instrName>
+	</com.sound.service.Instrument>
+	<com.sound.service.Instrument>
+		<instrId>38</instrId>
+		<instrName>Acoustic Snare</instrName>
+	</com.sound.service.Instrument>
+</instruments>

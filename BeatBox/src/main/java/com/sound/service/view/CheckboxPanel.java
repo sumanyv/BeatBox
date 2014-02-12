@@ -45,14 +45,8 @@ public class CheckboxPanel extends JPanel {
 
 			log.debug("Instrument {} set ",instName);
 			for(int i=0;i<Beats.TOTOAL_BEATS;++i){
-
 				JCheckBox c = new JCheckBox();
-				if(inst.getInstBeatStates(i)==true){
-					c.setSelected(true);
-				}else {
-					c.setSelected(false);
-				}
-				log.debug("Set Beat : {} , with Value : {} " ,i,inst.getInstBeatStates(i));
+				c.setSelected(false);
 				singleInstArr[i]=c;
 				add(singleInstArr[i]);
 			}

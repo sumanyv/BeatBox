@@ -48,7 +48,7 @@ public class Controller implements ActionListener{
 		case "Save" :
 			log.trace("Inside Save Listner");
 			checkedInstrument=CheckboxPanel.getCheckBoxVal();
-			InstrumentFactory.saveInstruments(checkedInstrument);
+			//TODO Save Beats Map
 			
 			break;
 		case "Restore" :
