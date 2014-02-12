@@ -25,7 +25,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.sound.client.ClientA</mainClass>
+							<mainClass>com.sound.client.Player</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
