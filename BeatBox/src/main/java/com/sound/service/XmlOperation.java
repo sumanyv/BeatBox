@@ -22,13 +22,16 @@ public class XmlOperation {
 	public static <T> void appendToXml(T append , String fileName){
 		 ArrayList<T> currentList = new ArrayList<T>();
 		 ArrayList<T> readList = readFromXml(fileName);
-		 
+		 log.trace("Inside Append to Xml for File : {} ",fileName);
 		 if(readList!=null){
 			 currentList = readList;
+			 log.debug("Appended the Exisiting Xml Of Size : {}",readList.size());
 			 currentList.add(append);
 		 }else{
 			 currentList.add(append);
+			 log.debug("File Is Empty fileName : {} ",fileName);
 		 }
+		 
 		 writeToXml(currentList, fileName);
 	}
 
@@ -37,12 +40,12 @@ public class XmlOperation {
 	 * @param writeInst
 	 * @param fileName Root Node of Xml Name ex : instruments
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> void writeToXml(ArrayList< T> writeList,String fileName){
 		
+		log.trace("Size of list : {}  to  Wirte to  Xml File : {} ",writeList.size(),fileName);
 		log.debug("Argument Passed root Node : {} ",fileName);
 		log.debug("Individual node Name : {} ",writeList.getClass().getName());
-		File file = new File(fileName) ;
+		File file = new File(fileName+".xml") ;
 		FileOutputStream fo=null;
 
 		XStream xstream = new XStream(new StaxDriver());

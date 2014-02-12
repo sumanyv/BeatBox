@@ -4,7 +4,7 @@
 		<instrId>35</instrId>
 		<instrName>Bass Drum</instrName>
 		<instBeatStates>
-			<boolean>false</boolean>
+			<boolean>true</boolean>
 			<boolean>false</boolean>
 			<boolean>false</boolean>
 			<boolean>false</boolean>
@@ -35,7 +35,7 @@
 			<boolean>false</boolean>
 			<boolean>false</boolean>
 			<boolean>false</boolean>
-			<boolean>false</boolean>
+			<boolean>true</boolean>
 			<boolean>false</boolean>
 			<boolean>false</boolean>
 			<boolean>false</boolean>
@@ -50,16 +50,16 @@
 		<instBeatStates>
 			<boolean>false</boolean>
 			<boolean>false</boolean>
+			<boolean>true</boolean>
+			<boolean>false</boolean>
+			<boolean>true</boolean>
 			<boolean>false</boolean>
 			<boolean>false</boolean>
 			<boolean>false</boolean>
 			<boolean>false</boolean>
 			<boolean>false</boolean>
 			<boolean>false</boolean>
-			<boolean>false</boolean>
-			<boolean>false</boolean>
-			<boolean>false</boolean>
-			<boolean>false</boolean>
+			<boolean>true</boolean>
 			<boolean>false</boolean>
 			<boolean>false</boolean>
 			<boolean>false</boolean>
