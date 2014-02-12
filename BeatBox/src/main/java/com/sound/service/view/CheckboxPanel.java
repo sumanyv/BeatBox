@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sound.service.Beats;
 import com.sound.service.Instrument;
 
 public class CheckboxPanel extends JPanel {
@@ -28,7 +29,7 @@ public class CheckboxPanel extends JPanel {
 	public CheckboxPanel(ArrayList<Instrument> instList) {
 		CheckboxPanel.instList=instList;
 		CheckboxPanel.cBoxMap= new HashMap<String,JCheckBox[]>();
-		GridLayout grid = new GridLayout(instList.size(),Instrument.TOTAL_BEAT);
+		GridLayout grid = new GridLayout(instList.size(),Beats.TOTOAL_BEATS);
 		grid.setVgap(1);grid.setHgap(2);
 		String instName=null;
 		JCheckBox[] singleInstArr = null;
@@ -40,10 +41,10 @@ public class CheckboxPanel extends JPanel {
 		for(Instrument inst : instList){
 			
 			instName= inst.getInstrName();
-			singleInstArr = new JCheckBox[Instrument.TOTAL_BEAT];
+			singleInstArr = new JCheckBox[Beats.TOTOAL_BEATS];
 
 			log.debug("Instrument {} set ",instName);
-			for(int i=0;i<Instrument.TOTAL_BEAT;++i){
+			for(int i=0;i<Beats.TOTOAL_BEATS;++i){
 
 				JCheckBox c = new JCheckBox();
 				if(inst.getInstBeatStates(i)==true){
@@ -68,7 +69,7 @@ public class CheckboxPanel extends JPanel {
 			String instName = inst.getInstrName();
 			JCheckBox[] singleInstArr = CheckboxPanel.cBoxMap.get(instName);
 			log.debug("Getting Checkbox for Instrument : {} ",instName);
-			for(int i=0;i<Instrument.TOTAL_BEAT;++i){
+			for(int i=0;i<Beats.TOTOAL_BEATS;++i){
 				JCheckBox jc = singleInstArr[i];
 
 				if(jc.isSelected()==true){

@@ -1,17 +1,18 @@
 package com.sound.service;
 
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 public class Instrument {
 
-	public static final int TOTAL_BEAT=16;
 	private int instrId;
 	private String instrName;
-	private boolean[] instBeatStates;
+	@XStreamOmitField private Beats beats ;
 
 	public Instrument(int instrId, String instrName) {
 		super();
 		this.instrId = instrId;
 		this.instrName = instrName;
-		this.instBeatStates = new boolean[TOTAL_BEAT];
+		this.beats = new Beats();
 	}
 	public int getInstrId() {
 		return instrId;
@@ -22,10 +23,10 @@ public class Instrument {
 	}
 
 	public void setInstBeatStates(int location,boolean value){
-		instBeatStates[location]=value;
+		beats.setStates(location, value);
 	}
 	public boolean getInstBeatStates(int location){
-		return instBeatStates[location];
+		return beats.getStates(location);
 	}
 
 }

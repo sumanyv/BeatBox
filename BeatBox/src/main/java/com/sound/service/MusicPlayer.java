@@ -81,7 +81,7 @@ class MusicPlayer  {
 			int instId = inst.getInstrId();
 			log.debug(" Instrument : {} , Instrument Id : {} ",instName,instId);
 
-			for(int i=0;i<Instrument.TOTAL_BEAT;++i){
+			for(int i=0;i<Beats.TOTOAL_BEATS;++i){
 				if(inst.getInstBeatStates(i)==true){
 					track.add(makeEvent(144, 9, instId, 100, i));
 					track.add(makeEvent(128, 9, instId, 100, i+1));
