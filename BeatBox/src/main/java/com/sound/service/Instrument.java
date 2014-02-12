@@ -31,5 +31,8 @@ public class Instrument {
 	public void setBeats(Beats b){
 		this.beats=b;
 	}
+	public Beats getBeats(){
+		return this.beats;
+	}
 
 }

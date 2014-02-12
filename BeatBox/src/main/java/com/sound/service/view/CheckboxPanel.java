@@ -21,11 +21,15 @@ public class CheckboxPanel extends JPanel {
 	private static Logger log = LoggerFactory.getLogger(CheckboxPanel.class);
 	private static ArrayList<Instrument> instList;
 	private static HashMap<String,JCheckBox[]> cBoxMap;
+	private static final CheckboxPanel instance = new CheckboxPanel();
 
 	/**
 	 * Create the panel.
 	 * @param instList 
 	 */
+	private CheckboxPanel(){
+		super();
+	}
 	public CheckboxPanel(ArrayList<Instrument> instList) {
 		CheckboxPanel.instList=instList;
 		CheckboxPanel.cBoxMap= new HashMap<String,JCheckBox[]>();
@@ -33,13 +37,12 @@ public class CheckboxPanel extends JPanel {
 		grid.setVgap(1);grid.setHgap(2);
 		String instName=null;
 		JCheckBox[] singleInstArr = null;
-		//TODO Check if the Check Box are correct
 		setLayout(grid);
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		log.debug("Number of Instruments to Add {} ",instList.size());
-		
+
 		for(Instrument inst : instList){
-			
+
 			instName= inst.getInstrName();
 			singleInstArr = new JCheckBox[Beats.TOTOAL_BEATS];
 
@@ -55,6 +58,9 @@ public class CheckboxPanel extends JPanel {
 		log.trace("Total CheckBox Mapped : {} ",cBoxMap.size());
 		log.trace("Finished Add CheckBox");
 
+	}
+	public void removeCheckbox(){
+		removeAll();
 	}
 
 	public static ArrayList<Instrument> getCheckBoxVal(){
@@ -77,4 +83,31 @@ public class CheckboxPanel extends JPanel {
 		return instList ;
 	}
 
+	public static void setCheckBoxVal(ArrayList<Instrument> checkedInstrument){
+
+		instance.removeAll();
+		String instName=null;
+		JCheckBox[] singleInstArr = null;
+		for(Instrument inst : checkedInstrument){
+
+			instName= inst.getInstrName();
+			singleInstArr = new JCheckBox[Beats.TOTOAL_BEATS];
+			log.debug("Instrument {} set ",instName);
+
+			for(int i=0;i<Beats.TOTOAL_BEATS;++i){
+				JCheckBox c = new JCheckBox();
+				if(inst.getInstBeatStates(i)==true){
+					c.setSelected(true);
+				}else{
+					c.setSelected(false);
+				}
+				singleInstArr[i]=c;
+				instance.add(singleInstArr[i]);
+			}
+			CheckboxPanel.cBoxMap.put(instName, singleInstArr);
+		}
+		log.trace("Total CheckBox Mapped : {} ",cBoxMap.size());
+		log.trace("Finished Add CheckBox");
+	}
 }
+

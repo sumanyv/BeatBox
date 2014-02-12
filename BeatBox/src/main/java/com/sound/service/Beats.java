@@ -1,6 +1,12 @@
 package com.sound.service;
 
-public class Beats {
+import java.io.Serializable;
+
+public class Beats implements Serializable {
+	/**
+	 * First serial Version . only contains states[] and TOTAL_BEATS
+	 */
+	private static final long serialVersionUID = -2564169395770493591L;
 	public static final int TOTOAL_BEATS =16;
 	private boolean states[]= new boolean[TOTOAL_BEATS];
 	

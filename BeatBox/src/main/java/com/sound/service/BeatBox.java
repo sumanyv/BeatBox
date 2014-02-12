@@ -26,7 +26,7 @@ public class BeatBox {
 		log.trace("Music Player Setup Finished");
 		this.frame = new MainFrame(instList);
 		log.trace("Main Frame for View Set Up Finished  frame= : {}",frame);
-		this.control= new Controller();
+		this.control= new Controller(instList);
 		log.trace("Controller SetUp Finished  control =: {} ",control);
 	}
 }

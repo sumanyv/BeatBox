@@ -12,11 +12,15 @@ import com.sound.service.view.CheckboxPanel;
 public class Controller implements ActionListener{
 
 	private final Logger log = LoggerFactory.getLogger(Controller.class);
-
+	private static ArrayList<Instrument>instList ;
 
 	/* For Button to Add Listeners*/
 	public Controller() {
 		super();
+	}
+
+	public Controller(ArrayList<Instrument> instList) {
+		Controller.instList=instList;
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -47,12 +51,23 @@ public class Controller implements ActionListener{
 			break;
 		case "Save" :
 			log.trace("Inside Save Listner");
-			checkedInstrument=CheckboxPanel.getCheckBoxVal();
-			//TODO Save Beats Map
-			
+			instList=CheckboxPanel.getCheckBoxVal();
+			Beats[] beatListtoSave = new Beats[instList.size()];
+			for(Instrument inst : instList){
+				int i=0;
+				beatListtoSave[i]=inst.getBeats();
+				BeatsFactory.saveBeats(beatListtoSave[i]);
+				++i;
+			}
 			break;
 		case "Restore" :
 			log.trace("Inside Restore Listner");
+			Beats[] beatListtoRestore = new Beats[InstrumentFactory.TOTAL_INSTRUMENTS];
+			for(int i=0;i<InstrumentFactory.TOTAL_INSTRUMENTS;++i){
+				beatListtoRestore[i]=BeatsFactory.getBeats();
+				instList.get(i).setBeats(beatListtoRestore[i]);
+			}
+			CheckboxPanel.setCheckBoxVal(instList);
 			break;
 		}
 	}
