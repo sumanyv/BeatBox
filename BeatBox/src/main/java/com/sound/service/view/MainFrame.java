@@ -43,9 +43,4 @@ public class MainFrame extends JFrame {
 		log.info("Beat Box Gui Set Up complete size : {}",getHeight());
 
 	}
-
-	//TODO Add Animation for Playing Music
-	public void paintComponent(Graphics g){
-
-	}
 }

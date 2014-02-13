@@ -21,15 +21,7 @@ public class CheckboxPanel extends JPanel {
 	private static Logger log = LoggerFactory.getLogger(CheckboxPanel.class);
 	private static ArrayList<Instrument> instList;
 	private static HashMap<String,JCheckBox[]> cBoxMap;
-	private static final CheckboxPanel instance = new CheckboxPanel();
 
-	/**
-	 * Create the panel.
-	 * @param instList 
-	 */
-	private CheckboxPanel(){
-		super();
-	}
 	public CheckboxPanel(ArrayList<Instrument> instList) {
 		CheckboxPanel.instList=instList;
 		CheckboxPanel.cBoxMap= new HashMap<String,JCheckBox[]>();
@@ -85,18 +77,18 @@ public class CheckboxPanel extends JPanel {
 
 	public static void setCheckBoxVal(ArrayList<Instrument> checkedInstrument){
 
-		instance.removeAll();
 		log.trace("Removed current CheckBox List");
 		String instName=null;
 		JCheckBox[] singleInstArr = null;
 		for(Instrument inst : checkedInstrument){
 
 			instName= inst.getInstrName();
-			singleInstArr = new JCheckBox[Beats.TOTOAL_BEATS];
+			
+			singleInstArr = cBoxMap.get(instName);
 			log.debug("Instrument {} set ",instName);
 
 			for(int i=0;i<Beats.TOTOAL_BEATS;++i){
-				JCheckBox c = new JCheckBox();
+				JCheckBox c = singleInstArr[i];
 				if(inst.getInstBeatStates(i)==true){
 					c.setSelected(true);
 					log.trace(" Instrument : {} Beat : {} Checked ",inst.getInstrName(),i);
@@ -104,13 +96,11 @@ public class CheckboxPanel extends JPanel {
 					c.setSelected(false);
 				}
 				singleInstArr[i]=c;
-				instance.add(singleInstArr[i]);
 			}
 			CheckboxPanel.cBoxMap.put(instName, singleInstArr);
 		}
 		log.trace("Total CheckBox Mapped : {} ",cBoxMap.size());
 		log.trace("Finished Add CheckBox");
-		instance.repaint();
 	}
 }
 

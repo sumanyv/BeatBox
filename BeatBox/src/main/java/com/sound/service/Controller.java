@@ -58,29 +58,8 @@ public class Controller implements ActionListener{
 			log.trace("Inside Restore Listner");
 			instList = InstrumentFactory.restoreInstBeats();
 			CheckboxPanel.setCheckBoxVal(instList);
+			
 			break;
 		}
 	}
-
-	//	private void start() {
-	/*Get User Selected CheckBox */
-	//		instList= CheckboxPanel.getCheckBoxVal();
-	//		for(int i=0;i<Instrument.TOTAL;++i){
-	//			try {
-	//				mPlayer.makeTracks(CheckBox[i]);
-	//			} catch (InvalidMidiDataException e) {
-	//				e.printStackTrace();
-	//				log.error(e.getMessage());
-	//			}
-	//			log.trace("Music beat for device "+CheckBox[i]);
-	//		}
-	//		try {
-	//			mPlayer.playTrack();
-	//		} catch (InvalidMidiDataException e) {
-	//			log.error(e.getMessage());
-	//			e.printStackTrace();
-	//		}
-	//	}
-
-
 }
