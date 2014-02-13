@@ -1,9 +1,15 @@
 package com.sound.service;
 
+import java.io.Serializable;
+
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
-public class Instrument {
+public class Instrument implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6056827064931468676L;
 	private int instrId;
 	private String instrName;
 	@XStreamOmitField private Beats beats ;
