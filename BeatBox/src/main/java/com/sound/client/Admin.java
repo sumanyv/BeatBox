@@ -1,9 +1,11 @@
 package com.sound.client;
 
 import java.util.Scanner;
+
 import com.sound.service.Button;
+import com.sound.service.ButtonFactory;
 import com.sound.service.Instrument;
-import com.sound.service.XmlOperation;
+import com.sound.service.InstrumentFactory;
 
 public class Admin {
 
@@ -24,10 +26,10 @@ public class Admin {
 				System.out.println("Enter Instrument Id\n");
 				int instId = sc.nextInt();
 				sc.nextLine();
-				
+
 				Instrument inst = new Instrument(instId, name);
-				XmlOperation.appendToXml(inst,"instruments");
-				
+				InstrumentFactory.addInstrument(inst);
+
 				System.out.println("Press 1 to Exit");
 				String exit = sc.nextLine();
 				if(exit.contains("1")){
@@ -46,10 +48,10 @@ public class Admin {
 				int gridX = Integer.parseInt(sc.nextLine());
 				System.out.println("Enter Grid Y Value");
 				int gridY = Integer.parseInt(sc.nextLine());
-				
+
 				Button b = new Button(name, fill, gridX, gridY);
-				XmlOperation.appendToXml(b,"buttons");
-				
+				ButtonFactory.addButton(b);
+
 				System.out.println("Press 1 to Exit");
 				String exit = sc.next();
 				if(exit.contains("1")){

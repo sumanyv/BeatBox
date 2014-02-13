@@ -85,7 +85,7 @@ class MusicPlayer  {
 				if(inst.getInstBeatStates(i)==true){
 					track.add(makeEvent(144, 9, instId, 100, i));
 					track.add(makeEvent(128, 9, instId, 100, i+1));
-					//TODO (Verify Agagin )Add Listener for Animation
+					//TODO (Verify Again )Add Listener for Animation
 					track.add(makeEvent(176, 1, 127, 9, 16));
 
 				}

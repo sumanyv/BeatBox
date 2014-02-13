@@ -15,11 +15,11 @@ import org.slf4j.LoggerFactory;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.StaxDriver;
 
-public class XmlOperation {
+ class XmlOperation {
 
 	private static final Logger log = LoggerFactory.getLogger(XmlOperation.class);
 	
-	public static <T> void appendToXml(T append , String fileName){
+	 static <T> void appendToXml(T append , String fileName){
 		 ArrayList<T> currentList = new ArrayList<T>();
 		 ArrayList<T> readList = readFromXml(fileName);
 		 log.trace("Inside Append to Xml for File : {} ",fileName);
@@ -40,7 +40,7 @@ public class XmlOperation {
 	 * @param writeInst
 	 * @param fileName Root Node of Xml Name ex : instruments
 	 */
-	public static <T> void writeToXml(ArrayList< T> writeList,String fileName){
+	 static <T> void writeToXml(ArrayList< T> writeList,String fileName){
 		
 		log.trace("Size of list : {}  to  Wirte to  Xml File : {} ",writeList.size(),fileName);
 		log.debug("Argument Passed root Node : {} ",fileName);

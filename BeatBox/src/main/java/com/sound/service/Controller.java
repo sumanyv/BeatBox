@@ -52,21 +52,11 @@ public class Controller implements ActionListener{
 		case "Save" :
 			log.trace("Inside Save Listner");
 			instList=CheckboxPanel.getCheckBoxVal();
-			Beats[] beatListtoSave = new Beats[instList.size()];
-			for(Instrument inst : instList){
-				int i=0;
-				beatListtoSave[i]=inst.getBeats();
-				BeatsFactory.saveBeats(beatListtoSave[i]);
-				++i;
-			}
+			InstrumentFactory.saveInstBeats(instList);
 			break;
 		case "Restore" :
 			log.trace("Inside Restore Listner");
-			Beats[] beatListtoRestore = new Beats[InstrumentFactory.TOTAL_INSTRUMENTS];
-			for(int i=0;i<InstrumentFactory.TOTAL_INSTRUMENTS;++i){
-				beatListtoRestore[i]=BeatsFactory.getBeats();
-				instList.get(i).setBeats(beatListtoRestore[i]);
-			}
+			instList = InstrumentFactory.restoreInstBeats();
 			CheckboxPanel.setCheckBoxVal(instList);
 			break;
 		}
