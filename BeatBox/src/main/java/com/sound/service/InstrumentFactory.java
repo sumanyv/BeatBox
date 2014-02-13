@@ -16,6 +16,8 @@ public class InstrumentFactory {
 	private static ArrayList<Instrument> instrumentButton;
 	private static final String FILE_NAME_XML="instruments";
 	private static final String FILE_NAME_SERIAL ="BEATS.SER";
+	private static final String resPath ="src/main/resources/";
+
 
 	public static int TOTAL_INSTRUMENTS;
 
@@ -41,7 +43,7 @@ public class InstrumentFactory {
 		FileOutputStream fo =null;
 		ObjectOutputStream oo=null ;
 		try {
-			fo = new FileOutputStream(FILE_NAME_SERIAL);
+			fo = new FileOutputStream(resPath+FILE_NAME_SERIAL);
 			oo = new ObjectOutputStream(fo);
 		} catch (IOException e) {
 			log.error(e.getMessage());
@@ -70,7 +72,7 @@ public class InstrumentFactory {
 		FileInputStream fi=null;
 		ObjectInputStream oi=null;
 		try {
-			fi = new FileInputStream(FILE_NAME_SERIAL);
+			fi = new FileInputStream(resPath+FILE_NAME_SERIAL);
 			oi= new ObjectInputStream(fi);
 
 		} catch (IOException e) {

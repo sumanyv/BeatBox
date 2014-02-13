@@ -17,9 +17,6 @@ public class MainFrame extends JFrame {
 	
 	private JPanel mainPanel;
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2148367511626434256L;
 	private static final String TITLE = "Cyber Beat Box";
 	private static final Logger log = LoggerFactory.getLogger(MainFrame.class);
@@ -36,7 +33,6 @@ public class MainFrame extends JFrame {
 		mainPanel.add(BorderLayout.EAST, new ButtonPanel());
 		mainPanel.add(BorderLayout.WEST, new NamePanel(instList));
 		mainPanel.add(BorderLayout.CENTER,new CheckboxPanel(instList));
-
 
 		pack();
 		setVisible(true);

@@ -18,6 +18,7 @@ import com.thoughtworks.xstream.io.xml.StaxDriver;
  class XmlOperation {
 
 	private static final Logger log = LoggerFactory.getLogger(XmlOperation.class);
+	private static final String resPath ="src/main/resources/";
 	
 	 static <T> void appendToXml(T append , String fileName){
 		 ArrayList<T> currentList = new ArrayList<T>();
@@ -83,7 +84,7 @@ import com.thoughtworks.xstream.io.xml.StaxDriver;
 	@SuppressWarnings({ "unchecked", "resource" })
 	public static <T> ArrayList<T> readFromXml(String fileName){
 		
-		File file = new File(fileName+".xml") ;
+		File file = new File(resPath+fileName+".xml") ;
 		BufferedReader br = null;
 		String xml=null;
 		ArrayList<T> currentList = new ArrayList<T>();
