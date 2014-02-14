@@ -2,10 +2,12 @@ package com.sound.service;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,19 +81,20 @@ class XmlOperation {
 		}
 	}
 
-	@SuppressWarnings({ "unchecked", "resource" })
+	@SuppressWarnings({ "unchecked"})
 	public static <T> ArrayList<T> readFromXml(String fileName) throws BeatBoxException{
 
-		File file = new File(fileName+".xml") ;
+	//	File file = new File(fileName+".xml") ;
+		InputStream is =XmlOperation.class.getClassLoader().getResourceAsStream(fileName+".xml");
 		BufferedReader br = null;
-		String xml=null;
+		String temp=null;
 		ArrayList<T> currentList = new ArrayList<T>();
 		StringBuilder sb = new StringBuilder();
 
 		try {
-			br = new BufferedReader(new FileReader(file));
-			while((xml=br.readLine())!= null){
-				sb.append(xml.trim());
+			br = new BufferedReader(new InputStreamReader(is));
+			while((temp=br.readLine())!= null){
+				sb.append(temp.trim());
 			}
 			XStream xstream = new XStream(new StaxDriver());
 			xstream.alias(fileName, List.class);
