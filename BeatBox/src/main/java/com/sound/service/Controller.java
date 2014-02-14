@@ -68,7 +68,10 @@ public class Controller implements ActionListener{
 				e1.printStackTrace();
 			}
 			CheckboxPanel.setCheckBoxVal(instList);
-			
+			break;
+		case "Clear All" :
+			log.trace("Clear All Clicked");
+			CheckboxPanel.clearAllCheckboxVal();
 			break;
 		}
 	}

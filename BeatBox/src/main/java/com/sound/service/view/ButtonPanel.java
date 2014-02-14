@@ -7,6 +7,9 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.sound.service.BeatBoxException;
 import com.sound.service.Button;
 import com.sound.service.ButtonFactory;
@@ -22,10 +25,8 @@ import java.util.ArrayList;
  *
  */
 public class ButtonPanel extends JPanel {
-
-	/**
-	 * 
-	 */
+	
+	private static final Logger log = LoggerFactory.getLogger(ButtonPanel.class);
 	private static final long serialVersionUID = 5530997149568660460L;
 	private ArrayList<Button> buttonList;
 
@@ -36,7 +37,7 @@ public class ButtonPanel extends JPanel {
 	public ButtonPanel() throws BeatBoxException {
 		
 		buttonList = ButtonFactory.getButtons();
-		
+		log.debug("Number Of Buttons {} ",buttonList.size());
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
@@ -47,7 +48,7 @@ public class ButtonPanel extends JPanel {
 		
 		
 		for(Button b : buttonList){
-			
+			log.trace("Added Button : {} ",b.getbName());
 			JButton button = new JButton(b.getbName());
 			button.addActionListener(Button.getListener());
 			GridBagConstraints gbc_button = new GridBagConstraints();

@@ -36,4 +36,10 @@
 		<gridX>3</gridX>
 		<gridY>5</gridY>
 	</com.sound.service.Button>
+	<com.sound.service.Button>
+		<bName>Clear All</bName>
+		<bFill>HORIZONTAL</bFill>
+		<gridX>1</gridX>
+		<gridY>7</gridY>
+	</com.sound.service.Button>
 </buttons>

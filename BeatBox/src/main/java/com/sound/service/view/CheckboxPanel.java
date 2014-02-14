@@ -77,7 +77,6 @@ public class CheckboxPanel extends JPanel {
 
 	public static void setCheckBoxVal(ArrayList<Instrument> checkedInstrument){
 
-		log.trace("Removed current CheckBox List");
 		String instName=null;
 		JCheckBox[] singleInstArr = null;
 		for(Instrument inst : checkedInstrument){
@@ -101,6 +100,26 @@ public class CheckboxPanel extends JPanel {
 		}
 		log.trace("Total CheckBox Mapped : {} ",cBoxMap.size());
 		log.trace("Finished Add CheckBox");
+	}
+	
+	public static void clearAllCheckboxVal(){
+		String instName =null;
+		JCheckBox[] singleInstArr = null;
+		for(Instrument inst : instList){
+
+			instName= inst.getInstrName();
+			
+			singleInstArr = cBoxMap.get(instName);
+			log.debug("Instrument {} set ",instName);
+
+			for(int i=0;i<Beats.TOTOAL_BEATS;++i){
+				JCheckBox c = singleInstArr[i];
+				c.setSelected(false);
+				singleInstArr[i]=c;
+			}
+			CheckboxPanel.cBoxMap.put(instName, singleInstArr);
+			log.debug("Cleared All Checkbox values");
+		}
 	}
 }
 
