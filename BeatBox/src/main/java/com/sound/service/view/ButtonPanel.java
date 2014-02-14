@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
 
+import com.sound.service.BeatBoxException;
 import com.sound.service.Button;
 import com.sound.service.ButtonFactory;
 
@@ -30,8 +31,9 @@ public class ButtonPanel extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @throws BeatBoxException 
 	 */
-	public ButtonPanel() {
+	public ButtonPanel() throws BeatBoxException {
 		
 		buttonList = ButtonFactory.getButtons();
 		

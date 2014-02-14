@@ -52,11 +52,21 @@ public class Controller implements ActionListener{
 		case "Save" :
 			log.trace("Inside Save Listner");
 			instList=CheckboxPanel.getCheckBoxVal();
-			InstrumentFactory.saveInstBeats(instList);
+			try {
+				InstrumentFactory.saveInstBeats(instList);
+			} catch (BeatBoxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			break;
 		case "Restore" :
 			log.trace("Inside Restore Listner");
-			instList = InstrumentFactory.restoreInstBeats();
+			try {
+				instList = InstrumentFactory.restoreInstBeats();
+			} catch (BeatBoxException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			CheckboxPanel.setCheckBoxVal(instList);
 			
 			break;

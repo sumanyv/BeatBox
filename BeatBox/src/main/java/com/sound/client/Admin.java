@@ -2,6 +2,7 @@ package com.sound.client;
 
 import java.util.Scanner;
 
+import com.sound.service.BeatBoxException;
 import com.sound.service.Button;
 import com.sound.service.ButtonFactory;
 import com.sound.service.Instrument;
@@ -28,7 +29,12 @@ public class Admin {
 				sc.nextLine();
 
 				Instrument inst = new Instrument(instId, name);
-				InstrumentFactory.addInstrument(inst);
+				try {
+					InstrumentFactory.addInstrument(inst);
+				} catch (BeatBoxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 				System.out.println("Press 1 to Exit");
 				String exit = sc.nextLine();
@@ -50,7 +56,12 @@ public class Admin {
 				int gridY = Integer.parseInt(sc.nextLine());
 
 				Button b = new Button(name, fill, gridX, gridY);
-				ButtonFactory.addButton(b);
+				try {
+					ButtonFactory.addButton(b);
+				} catch (BeatBoxException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 				System.out.println("Press 1 to Exit");
 				String exit = sc.next();

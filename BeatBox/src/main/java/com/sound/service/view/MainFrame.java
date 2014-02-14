@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sound.service.BeatBoxException;
 import com.sound.service.Instrument;
 
 public class MainFrame extends JFrame {
@@ -21,7 +22,7 @@ public class MainFrame extends JFrame {
 	private static final String TITLE = "Cyber Beat Box";
 	private static final Logger log = LoggerFactory.getLogger(MainFrame.class);
 
-	 public MainFrame(ArrayList<Instrument> instList){
+	 public MainFrame(ArrayList<Instrument> instList) throws BeatBoxException{
 
 		setTitle(TITLE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

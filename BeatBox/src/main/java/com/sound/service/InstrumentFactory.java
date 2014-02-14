@@ -17,28 +17,26 @@ public class InstrumentFactory {
 	private static final String FILE_NAME_XML="instruments";
 	private static final String FILE_NAME_SERIAL ="BEATS.SER";
 	private static final String resPath ="src/main/resources/";
-
-
 	public static int TOTAL_INSTRUMENTS;
 
-	static{
+
+
+	public static ArrayList<Instrument> getInstruments() throws BeatBoxException{
 		instrumentButton= XmlOperation.readFromXml(FILE_NAME_XML);
 		TOTAL_INSTRUMENTS=instrumentButton.size();
-	}
 
-	public static ArrayList<Instrument> getInstruments(){
 		for(Instrument inst : instrumentButton){
 			inst.setBeats(new Beats());
 		}
 		return instrumentButton;
 	}
 
-	public static void addInstrument(Instrument inst){
+	public static void addInstrument(Instrument inst) throws BeatBoxException{
 		XmlOperation.appendToXml(inst, FILE_NAME_XML);
 	}
 
 
-	public static void saveInstBeats(ArrayList<Instrument> instList){
+	public static void saveInstBeats(ArrayList<Instrument> instList) throws BeatBoxException{
 
 		FileOutputStream fo =null;
 		ObjectOutputStream oo=null ;
@@ -57,6 +55,7 @@ public class InstrumentFactory {
 			} catch (IOException e) {
 				log.error(e.getMessage());
 				e.printStackTrace();
+				throw new BeatBoxException("Saving Object Encountered Error");
 			}
 		}
 		try {
@@ -67,7 +66,8 @@ public class InstrumentFactory {
 		}
 	}
 
-	public static ArrayList<Instrument> restoreInstBeats(){
+	@SuppressWarnings("resource")
+	public static ArrayList<Instrument> restoreInstBeats() throws BeatBoxException{
 		ArrayList<Instrument> readList = new ArrayList<Instrument>();
 		FileInputStream fi=null;
 		ObjectInputStream oi=null;
@@ -78,6 +78,7 @@ public class InstrumentFactory {
 		} catch (IOException e) {
 			log.error(e.getMessage());
 			e.printStackTrace();
+			throw new BeatBoxException("Restroing Instrument Encountered Error");
 		}
 		for(int i=0;i<TOTAL_INSTRUMENTS;++i){
 			try {
@@ -85,7 +86,9 @@ public class InstrumentFactory {
 			} catch (ClassNotFoundException | IOException e) {
 				log.error(e.getMessage());
 				e.printStackTrace();
+				throw new BeatBoxException("Restroing Instrument Encountered Error");
 			}
+
 
 			log.debug("Restored Instrumetn Obj : {} at Location {} ",readList.get(i),i);
 		}
@@ -94,6 +97,7 @@ public class InstrumentFactory {
 		} catch (IOException e) {
 			log.error(e.getMessage());
 			e.printStackTrace();
+			throw new BeatBoxException("Restroing Instrument Encountered Error");
 		}
 		return readList;
 

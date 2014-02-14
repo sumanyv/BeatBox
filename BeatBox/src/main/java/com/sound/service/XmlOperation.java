@@ -20,7 +20,7 @@ import com.thoughtworks.xstream.io.xml.StaxDriver;
 	private static final Logger log = LoggerFactory.getLogger(XmlOperation.class);
 	private static final String resPath ="src/main/resources/";
 	
-	 static <T> void appendToXml(T append , String fileName){
+	 static <T> void appendToXml(T append , String fileName) throws BeatBoxException{
 		 ArrayList<T> currentList = new ArrayList<T>();
 		 ArrayList<T> readList = readFromXml(fileName);
 		 log.trace("Inside Append to Xml for File : {} ",fileName);
@@ -40,13 +40,14 @@ import com.thoughtworks.xstream.io.xml.StaxDriver;
 	 * 
 	 * @param writeInst
 	 * @param fileName Root Node of Xml Name ex : instruments
+	 * @throws BeatBoxException 
 	 */
-	 static <T> void writeToXml(ArrayList< T> writeList,String fileName){
+	 static <T> void writeToXml(ArrayList< T> writeList,String fileName) throws BeatBoxException{
 		
 		log.trace("Size of list : {}  to  Wirte to  Xml File : {} ",writeList.size(),fileName);
 		log.debug("Argument Passed root Node : {} ",fileName);
 		log.debug("Individual node Name : {} ",writeList.getClass().getName());
-		File file = new File(fileName+".xml") ;
+		File file = new File(resPath+fileName+".xml") ;
 		FileOutputStream fo=null;
 
 		XStream xstream = new XStream(new StaxDriver());
@@ -62,27 +63,30 @@ import com.thoughtworks.xstream.io.xml.StaxDriver;
 				file.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
+				throw new BeatBoxException("Error Writing new Instruments");
+
 			}
 		}try {
 			fo = new FileOutputStream(file);
 			fo.write(xmlInChar);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new BeatBoxException("Error Writing new Instruments");
 		}finally {
 			try {
 				if (fo != null) {
 					fo.close();
+					throw new BeatBoxException("Error Writing new Instruments");
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
+				throw new BeatBoxException("Error Writing new Instruments");
 			}
 		}
 	}
 
 	@SuppressWarnings({ "unchecked", "resource" })
-	public static <T> ArrayList<T> readFromXml(String fileName){
+	public static <T> ArrayList<T> readFromXml(String fileName) throws BeatBoxException{
 		
 		File file = new File(resPath+fileName+".xml") ;
 		BufferedReader br = null;
@@ -94,6 +98,7 @@ import com.thoughtworks.xstream.io.xml.StaxDriver;
 		} catch (FileNotFoundException e1) {
 			log.error(e1.getMessage());
 			e1.printStackTrace();
+			throw new BeatBoxException("Error Reading Instruments");
 		}
 		StringBuilder sb = new StringBuilder();
 		try {
@@ -103,6 +108,7 @@ import com.thoughtworks.xstream.io.xml.StaxDriver;
 		}catch (IOException e) {
 			log.error(e.getMessage());
 			e.printStackTrace();
+			throw new BeatBoxException("Error Reading Instruments");
 		}
 		
 		XStream xstream = new XStream(new StaxDriver());

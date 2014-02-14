@@ -10,14 +10,14 @@ public class ButtonFactory {
 	static{
 		Button.setListener(new Controller());
 		Button.setInsert(0, 0, 5, 5);
-		buttonList = XmlOperation.readFromXml(FILE_NAME);
 	}
 
-	public static ArrayList<Button> getButtons(){
+	public static ArrayList<Button> getButtons() throws BeatBoxException{
+		buttonList = XmlOperation.readFromXml(FILE_NAME);
 		return buttonList;
 	}
 	
-	public static void addButton(Button b){
+	public static void addButton(Button b) throws BeatBoxException{
 		
 		XmlOperation.appendToXml(b, FILE_NAME);
 	}
