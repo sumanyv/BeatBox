@@ -1,5 +1,6 @@
 package com.sound.service;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,10 +17,19 @@ public class InstrumentFactory {
 	private static ArrayList<Instrument> instrumentButton;
 	private static final String FILE_NAME_XML="instruments";
 	private static final String FILE_NAME_SERIAL ="BEATS.SER";
-	private static final String resPath ="src/main/resources/";
+	private static final String resPath ="C://BeatBox/Data/";
 	public static int TOTAL_INSTRUMENTS;
 
-
+	static{
+		File file = new File(resPath);
+		if (!file.exists()) {
+			if (file.mkdir()) {
+				log.debug("Directory is created! {} ",resPath);
+			} else {
+				log.debug("Failed to create directory! {} ",resPath);
+			}
+		}
+	}
 
 	public static ArrayList<Instrument> getInstruments() throws BeatBoxException{
 		instrumentButton= XmlOperation.readFromXml(FILE_NAME_XML);
