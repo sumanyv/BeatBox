@@ -33,7 +33,7 @@ public class BeatBox {
 			log.trace("Controller SetUp Finished  control =: {} ",control);
 		} catch (BeatBoxException e) {
 			JOptionPane.showMessageDialog(frame,e.getMessage(),"Error Launching",JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
+			log.error("Exception !! {}",e);
 		}
 
 	}

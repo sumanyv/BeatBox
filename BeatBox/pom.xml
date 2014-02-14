@@ -42,12 +42,6 @@
 				</executions>
 			</plugin>
 		</plugins>
-		<resources>
-		<resource>
-		<directory>src/main/resources</directory>
-		<targetPath>src/main/resources</targetPath>
-		</resource>
-		</resources>
 	</build>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -1,7 +1,6 @@
 package com.sound.service.view;
 
 import java.awt.BorderLayout;
-import java.awt.Graphics;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
