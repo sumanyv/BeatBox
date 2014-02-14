@@ -32,7 +32,7 @@ public class BeatBox {
 			this.control= new Controller(instList);
 			log.trace("Controller SetUp Finished  control =: {} ",control);
 		} catch (BeatBoxException e) {
-			JOptionPane.showMessageDialog(frame,"Eggs are not supposed to be green.","Error Launching",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(frame,e.getMessage(),"Error Launching",JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 
