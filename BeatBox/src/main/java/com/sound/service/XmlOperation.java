@@ -106,7 +106,6 @@ class XmlOperation {
 			e1.printStackTrace();
 			throw new BeatBoxException("Error Reading Instruments",e1);
 		}
-
 		return (ArrayList<T>) currentList;
 	}
 }
