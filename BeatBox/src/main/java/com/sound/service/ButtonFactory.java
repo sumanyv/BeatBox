@@ -17,9 +17,9 @@ public class ButtonFactory {
 		return buttonList;
 	}
 	
-	public static void addButton(Button b) throws BeatBoxException{
+	/*public static void addButton(Button b) throws BeatBoxException{
 		
 		XmlOperation.appendToXml(b, FILE_NAME);
 	}
-
+*/
 }

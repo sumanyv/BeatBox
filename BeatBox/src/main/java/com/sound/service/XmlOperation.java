@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,7 @@ import com.thoughtworks.xstream.io.xml.StaxDriver;
 class XmlOperation {
 
 	private static final Logger log = LoggerFactory.getLogger(XmlOperation.class);
-
+/*
 	static <T> void appendToXml(T append , String fileName) throws BeatBoxException{
 		ArrayList<T> currentList = new ArrayList<T>();
 		ArrayList<T> readList = readFromXml(fileName);
@@ -37,19 +39,27 @@ class XmlOperation {
 		writeToXml(currentList, fileName);
 	}
 
-	/**
+	*//**
 	 * 
 	 * @param writeInst
 	 * @param fileName Root Node of Xml Name ex : instruments
 	 * @throws BeatBoxException 
-	 */
+	 *//*
 	static <T> void writeToXml(ArrayList< T> writeList,String fileName) throws BeatBoxException{
 
 		log.trace("Size of list : {}  to  Wirte to  Xml File : {} ",writeList.size(),fileName);
 		log.debug("Argument Passed root Node : {} ",fileName);
 		log.debug("Individual node Name : {} ",writeList.getClass().getName());
-		File file = new File(fileName+".xml") ;
+		URL resourceUrl = XmlOperation.class.getClassLoader().getResource(fileName+".xml");
+		File file = null;
+		try {
+			file = new File(resourceUrl.toURI());
+		} catch (URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		FileOutputStream fo=null;
+		
 
 		XStream xstream = new XStream(new StaxDriver());
 		xstream.alias(fileName, List.class);
@@ -80,7 +90,7 @@ class XmlOperation {
 			}
 		}
 	}
-
+*/
 	@SuppressWarnings({ "unchecked"})
 	public static <T> ArrayList<T> readFromXml(String fileName) throws BeatBoxException{
 

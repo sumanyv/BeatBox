@@ -31,11 +31,11 @@ public class InstrumentFactory {
 		return instrumentButton;
 	}
 
-	public static void addInstrument(Instrument inst) throws BeatBoxException{
+/*	public static void addInstrument(Instrument inst) throws BeatBoxException{
 		XmlOperation.appendToXml(inst, FILE_NAME_XML);
 	}
 
-
+*/
 	public static void saveInstBeats(ArrayList<Instrument> instList) throws BeatBoxException{
 
 		FileOutputStream fo =null;
