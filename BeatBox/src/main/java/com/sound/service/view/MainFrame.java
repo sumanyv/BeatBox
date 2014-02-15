@@ -1,8 +1,10 @@
 package com.sound.service.view;
 
 import java.awt.BorderLayout;
+import java.net.URL;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -19,11 +21,14 @@ public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 2148367511626434256L;
 	private static final String TITLE = "Cyber Beat Box";
+	private final URL LOGO = MainFrame.class.getClassLoader().getResource("BeatBoxIcon.jpg");
 	private static final Logger log = LoggerFactory.getLogger(MainFrame.class);
 
 	 public MainFrame(ArrayList<Instrument> instList) throws BeatBoxException{
 
 		setTitle(TITLE);
+		ImageIcon logoImg = new ImageIcon(LOGO);
+		setIconImage(logoImg.getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50,50,300,300);
 		mainPanel = new JPanel(new BorderLayout(0,0));
